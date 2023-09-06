@@ -1,0 +1,1749 @@
+{
+    "schemas": [
+        {
+            "name": "main",
+            "tables": [
+                {
+                    "name": "migrations",
+                    "columns": [
+                        { "name": "id", "type": "INTEGER" },
+                        { "name": "migration", "type": "varchar" },
+                        { "name": "batch", "type": "INTEGER" }
+                    ],
+                    "primary_key": { "parts": [{ "column": "id" }] }
+                },
+                {
+                    "name": "legacy_cache_most_visited",
+                    "columns": [
+                        { "name": "id", "type": "INTEGER" },
+                        { "name": "day", "type": "date" },
+                        { "name": "page", "type": "TEXT" },
+                        {
+                            "name": "entity_id",
+                            "type": "int UNSIGNED",
+                            "null": true
+                        },
+                        { "name": "visits", "type": "int UNSIGNED" }
+                    ],
+                    "primary_key": { "parts": [{ "column": "id" }] }
+                },
+                {
+                    "name": "legacy_country",
+                    "columns": [
+                        { "name": "id", "type": "INTEGER" },
+                        { "name": "iso_key", "type": "varchar(10)" },
+                        { "name": "name", "type": "TEXT" }
+                    ],
+                    "primary_key": { "parts": [{ "column": "id" }] }
+                },
+                {
+                    "name": "legacy_elo_1v1_cache",
+                    "columns": [
+                        { "name": "id", "type": "INTEGER" },
+                        { "name": "created", "type": "datetime" },
+                        { "name": "type", "type": "varchar(255)" },
+                        {
+                            "name": "match_id",
+                            "type": "int UNSIGNED",
+                            "null": true
+                        },
+                        { "name": "player_id", "type": "int UNSIGNED" },
+                        { "name": "elo_before", "type": "int UNSIGNED" },
+                        { "name": "elo_after", "type": "int UNSIGNED" },
+                        { "name": "match_time", "type": "date" },
+                        {
+                            "name": "tournament_id",
+                            "type": "int UNSIGNED",
+                            "null": true
+                        }
+                    ],
+                    "primary_key": { "parts": [{ "column": "id" }] }
+                },
+                {
+                    "name": "legacy_extern_de_cache",
+                    "columns": [
+                        { "name": "id", "type": "INTEGER" },
+                        { "name": "steam_id", "type": "varchar(40)" },
+                        { "name": "time", "type": "datetime" },
+                        { "name": "rating", "type": "int UNSIGNED" },
+                        { "name": "rank", "type": "int UNSIGNED" }
+                    ],
+                    "primary_key": { "parts": [{ "column": "id" }] }
+                },
+                {
+                    "name": "legacy_extern_voobly_cache",
+                    "columns": [
+                        { "name": "id", "type": "INTEGER" },
+                        { "name": "voobly_id", "type": "int UNSIGNED" },
+                        { "name": "ladder", "type": "int UNSIGNED" },
+                        { "name": "rating", "type": "int UNSIGNED" },
+                        {
+                            "name": "ranking",
+                            "type": "int UNSIGNED",
+                            "null": true
+                        },
+                        { "name": "time", "type": "datetime" }
+                    ],
+                    "primary_key": { "parts": [{ "column": "id" }] }
+                },
+                {
+                    "name": "legacy_extern_voobly_player_cache",
+                    "columns": [
+                        { "name": "id", "type": "INTEGER" },
+                        { "name": "voobly_id", "type": "int UNSIGNED" },
+                        { "name": "rm_1v1", "type": "int UNSIGNED" },
+                        { "name": "rm_tg", "type": "int UNSIGNED" },
+                        { "name": "time", "type": "datetime" }
+                    ],
+                    "primary_key": { "parts": [{ "column": "id" }] }
+                },
+                {
+                    "name": "legacy_match_1v1",
+                    "columns": [
+                        { "name": "id", "type": "INTEGER" },
+                        { "name": "date", "type": "date", "null": true },
+                        {
+                            "name": "tournament_id",
+                            "type": "int UNSIGNED",
+                            "null": true
+                        },
+                        { "name": "stage_id", "type": "int UNSIGNED" },
+                        { "name": "player_1_id", "type": "int UNSIGNED" },
+                        { "name": "player_2_id", "type": "int UNSIGNED" },
+                        { "name": "score_1", "type": "int UNSIGNED" },
+                        { "name": "score_2", "type": "int UNSIGNED" },
+                        { "name": "create_user", "type": "int UNSIGNED" },
+                        { "name": "create_time", "type": "datetime" },
+                        { "name": "update_user", "type": "int UNSIGNED" },
+                        { "name": "update_time", "type": "datetime" }
+                    ],
+                    "primary_key": { "parts": [{ "column": "id" }] }
+                },
+                {
+                    "name": "legacy_match_1v1_event",
+                    "columns": [
+                        { "name": "id", "type": "INTEGER" },
+                        { "name": "date", "type": "date", "null": true },
+                        { "name": "time", "type": "time", "null": true },
+                        { "name": "tournament_id", "type": "int UNSIGNED" },
+                        { "name": "stage_id", "type": "int UNSIGNED" },
+                        {
+                            "name": "player_1_id",
+                            "type": "int UNSIGNED",
+                            "null": true
+                        },
+                        {
+                            "name": "player_2_id",
+                            "type": "int UNSIGNED",
+                            "null": true
+                        },
+                        { "name": "bo", "type": "int UNSIGNED", "null": true },
+                        { "name": "create_user", "type": "int UNSIGNED" },
+                        { "name": "create_time", "type": "datetime" },
+                        { "name": "update_user", "type": "int UNSIGNED" },
+                        { "name": "update_time", "type": "datetime" }
+                    ],
+                    "primary_key": { "parts": [{ "column": "id" }] }
+                },
+                {
+                    "name": "legacy_meta_cache",
+                    "columns": [
+                        { "name": "id", "type": "INTEGER" },
+                        { "name": "name", "type": "INT" },
+                        { "name": "value_int", "type": "INT" },
+                        { "name": "value_float", "type": "double" },
+                        { "name": "value_str", "type": "TEXT" }
+                    ],
+                    "primary_key": { "parts": [{ "column": "id" }] }
+                },
+                {
+                    "name": "legacy_page_ip_info",
+                    "columns": [
+                        { "name": "id", "type": "INTEGER" },
+                        { "name": "time", "type": "datetime" },
+                        { "name": "ip", "type": "bigint", "null": true },
+                        { "name": "data", "type": "TEXT", "null": true },
+                        { "name": "longitude", "type": "double", "null": true },
+                        { "name": "latitude", "type": "double", "null": true },
+                        {
+                            "name": "country",
+                            "type": "varchar(100)",
+                            "null": true
+                        },
+                        {
+                            "name": "country_code",
+                            "type": "varchar(10)",
+                            "null": true
+                        },
+                        { "name": "city", "type": "TEXT", "null": true },
+                        { "name": "error", "type": "TEXT", "null": true }
+                    ],
+                    "primary_key": { "parts": [{ "column": "id" }] }
+                },
+                {
+                    "name": "legacy_page_visit",
+                    "columns": [
+                        { "name": "id", "type": "INTEGER" },
+                        { "name": "time", "type": "datetime" },
+                        {
+                            "name": "session_key",
+                            "type": "varchar(255)",
+                            "null": true
+                        },
+                        {
+                            "name": "hash",
+                            "type": "varchar(100)",
+                            "null": true
+                        },
+                        {
+                            "name": "user",
+                            "type": "int UNSIGNED",
+                            "null": true
+                        },
+                        { "name": "ip", "type": "bigint", "null": true },
+                        {
+                            "name": "ip_info",
+                            "type": "int UNSIGNED",
+                            "null": true
+                        },
+                        {
+                            "name": "domain",
+                            "type": "varchar(100)",
+                            "null": true
+                        },
+                        { "name": "path", "type": "TEXT", "null": true },
+                        {
+                            "name": "page",
+                            "type": "varchar(255)",
+                            "null": true
+                        },
+                        {
+                            "name": "entity_id",
+                            "type": "int UNSIGNED",
+                            "null": true
+                        }
+                    ],
+                    "primary_key": { "parts": [{ "column": "id" }] }
+                },
+                {
+                    "name": "legacy_player",
+                    "columns": [
+                        { "name": "id", "type": "INTEGER" },
+                        { "name": "name", "type": "varchar(30)" },
+                        { "name": "alias", "type": "varchar(255)" },
+                        {
+                            "name": "team_id",
+                            "type": "int UNSIGNED",
+                            "null": true
+                        },
+                        {
+                            "name": "country_key",
+                            "type": "varchar(10)",
+                            "null": true
+                        },
+                        {
+                            "name": "initial_elo_1v1",
+                            "type": "int UNSIGNED",
+                            "null": true
+                        },
+                        {
+                            "name": "voobly_id",
+                            "type": "int UNSIGNED",
+                            "null": true
+                        },
+                        {
+                            "name": "steam_id",
+                            "type": "varchar(40)",
+                            "null": true
+                        },
+                        {
+                            "name": "steam_id_failed",
+                            "type": "varchar(40)",
+                            "null": true
+                        },
+                        { "name": "twitch", "type": "TEXT", "null": true },
+                        { "name": "youtube", "type": "TEXT", "null": true },
+                        { "name": "twitter", "type": "TEXT", "null": true },
+                        { "name": "facebook", "type": "TEXT", "null": true },
+                        { "name": "create_user", "type": "int UNSIGNED" },
+                        { "name": "create_time", "type": "datetime" },
+                        { "name": "update_user", "type": "int UNSIGNED" },
+                        { "name": "update_time", "type": "datetime" }
+                    ],
+                    "primary_key": { "parts": [{ "column": "id" }] }
+                },
+                {
+                    "name": "legacy_player_info",
+                    "columns": [
+                        { "name": "id", "type": "INTEGER" },
+                        { "name": "player", "type": "int UNSIGNED" },
+                        { "name": "type", "type": "varchar(255)" },
+                        { "name": "value_int", "type": "INT", "null": true },
+                        { "name": "value_str", "type": "TEXT", "null": true },
+                        { "name": "create_time", "type": "datetime" },
+                        { "name": "create_user", "type": "int UNSIGNED" }
+                    ]
+                },
+                {
+                    "name": "legacy_stage",
+                    "columns": [
+                        { "name": "id", "type": "INTEGER" },
+                        { "name": "name", "type": "TEXT" },
+                        { "name": "bracket", "type": "int UNSIGNED" },
+                        { "name": "index", "type": "int UNSIGNED" },
+                        { "name": "weight", "type": "float" },
+                        { "name": "importance", "type": "int UNSIGNED" }
+                    ],
+                    "primary_key": { "parts": [{ "column": "id" }] }
+                },
+                {
+                    "name": "legacy_subscription",
+                    "columns": [
+                        { "name": "id", "type": "INTEGER" },
+                        { "name": "created", "type": "datetime" },
+                        { "name": "email", "type": "TEXT" },
+                        { "name": "session", "type": "TEXT" }
+                    ],
+                    "primary_key": { "parts": [{ "column": "id" }] }
+                },
+                {
+                    "name": "legacy_team",
+                    "columns": [
+                        { "name": "id", "type": "INTEGER" },
+                        { "name": "name", "type": "varchar(100)" },
+                        { "name": "tag", "type": "varchar(30)" },
+                        {
+                            "name": "primary_color",
+                            "type": "varchar(30)",
+                            "null": true
+                        },
+                        {
+                            "name": "secondary_color",
+                            "type": "varchar(30)",
+                            "null": true
+                        },
+                        {
+                            "name": "create_user",
+                            "type": "int UNSIGNED",
+                            "null": true
+                        },
+                        {
+                            "name": "create_time",
+                            "type": "datetime",
+                            "null": true
+                        },
+                        {
+                            "name": "update_user",
+                            "type": "int UNSIGNED",
+                            "null": true
+                        },
+                        {
+                            "name": "update_time",
+                            "type": "datetime",
+                            "null": true
+                        }
+                    ],
+                    "primary_key": { "parts": [{ "column": "id" }] }
+                },
+                {
+                    "name": "legacy_ticket",
+                    "columns": [
+                        { "name": "id", "type": "INTEGER" },
+                        { "name": "created", "type": "datetime" },
+                        {
+                            "name": "user",
+                            "type": "int UNSIGNED",
+                            "null": true
+                        },
+                        { "name": "type", "type": "varchar(255)" },
+                        { "name": "done", "type": "INT" },
+                        { "name": "message", "type": "TEXT" },
+                        { "name": "contact", "type": "TEXT" },
+                        { "name": "hash", "type": "TEXT" },
+                        { "name": "session", "type": "TEXT" }
+                    ],
+                    "primary_key": { "parts": [{ "column": "id" }] }
+                },
+                {
+                    "name": "legacy_tournament",
+                    "columns": [
+                        { "name": "id", "type": "INTEGER" },
+                        { "name": "name", "type": "varchar(255)" },
+                        { "name": "short", "type": "varchar(100)" },
+                        { "name": "start", "type": "date", "null": true },
+                        { "name": "end", "type": "date", "null": true },
+                        { "name": "weight", "type": "int UNSIGNED" },
+                        { "name": "type", "type": "TEXT" },
+                        {
+                            "name": "prizemoney",
+                            "type": "int UNSIGNED",
+                            "null": true
+                        },
+                        {
+                            "name": "parent_id",
+                            "type": "int UNSIGNED",
+                            "null": true
+                        },
+                        { "name": "structure", "type": "TEXT" },
+                        {
+                            "name": "evaluation",
+                            "type": "varchar(30)",
+                            "null": true
+                        },
+                        { "name": "website", "type": "TEXT", "null": true },
+                        { "name": "comment", "type": "TEXT", "null": true },
+                        { "name": "create_user", "type": "int UNSIGNED" },
+                        { "name": "create_time", "type": "datetime" },
+                        { "name": "update_user", "type": "int UNSIGNED" },
+                        { "name": "update_time", "type": "datetime" }
+                    ],
+                    "primary_key": { "parts": [{ "column": "id" }] }
+                },
+                {
+                    "name": "legacy_tournament_info",
+                    "columns": [
+                        { "name": "id", "type": "INTEGER" },
+                        { "name": "create_user", "type": "int UNSIGNED" },
+                        { "name": "create_time", "type": "datetime" },
+                        { "name": "tournament_id", "type": "int UNSIGNED" },
+                        { "name": "type", "type": "int UNSIGNED" },
+                        { "name": "description", "type": "TEXT" },
+                        { "name": "value", "type": "TEXT" }
+                    ],
+                    "primary_key": { "parts": [{ "column": "id" }] }
+                },
+                {
+                    "name": "legacy_tournament_result",
+                    "columns": [
+                        { "name": "id", "type": "INTEGER" },
+                        { "name": "tournament", "type": "int UNSIGNED" },
+                        { "name": "player", "type": "int UNSIGNED" },
+                        {
+                            "name": "type",
+                            "type": "int UNSIGNED",
+                            "null": true
+                        },
+                        {
+                            "name": "money",
+                            "type": "int UNSIGNED",
+                            "null": true
+                        },
+                        { "name": "source", "type": "TEXT", "null": true },
+                        { "name": "create_time", "type": "datetime" },
+                        { "name": "create_user", "type": "int UNSIGNED" }
+                    ],
+                    "primary_key": { "parts": [{ "column": "id" }] }
+                },
+                {
+                    "name": "legacy_user",
+                    "columns": [
+                        { "name": "id", "type": "INTEGER" },
+                        { "name": "name", "type": "varchar(100)" },
+                        { "name": "pass", "type": "varchar(255)" },
+                        { "name": "rank", "type": "int UNSIGNED" },
+                        {
+                            "name": "allow_tournament",
+                            "type": "int UNSIGNED",
+                            "null": true
+                        },
+                        {
+                            "name": "allow_player",
+                            "type": "int UNSIGNED",
+                            "null": true
+                        },
+                        { "name": "allow_match", "type": "INT", "null": true },
+                        {
+                            "name": "allow_see",
+                            "type": "int UNSIGNED",
+                            "null": true
+                        }
+                    ],
+                    "primary_key": { "parts": [{ "column": "id" }] }
+                },
+                {
+                    "name": "countries",
+                    "columns": [
+                        { "name": "id", "type": "INTEGER" },
+                        { "name": "iso_key", "type": "varchar" },
+                        { "name": "name", "type": "varchar" }
+                    ],
+                    "primary_key": { "parts": [{ "column": "id" }] }
+                },
+                {
+                    "name": "match_1v1_items",
+                    "columns": [
+                        { "name": "id", "type": "INTEGER" },
+                        {
+                            "name": "played_at",
+                            "type": "datetime",
+                            "null": true
+                        },
+                        {
+                            "name": "tournament_id",
+                            "type": "INTEGER",
+                            "null": true
+                        },
+                        { "name": "score_1", "type": "INTEGER" },
+                        { "name": "score_2", "type": "INTEGER" },
+                        { "name": "created_user_id_ref", "type": "INTEGER" },
+                        { "name": "updated_user_id_ref", "type": "INTEGER" },
+                        { "name": "player_1_id_ref", "type": "INTEGER" },
+                        { "name": "player_2_id_ref", "type": "INTEGER" },
+                        { "name": "stage_id_ref", "type": "INTEGER" },
+                        {
+                            "name": "created_at",
+                            "type": "datetime",
+                            "null": true
+                        },
+                        {
+                            "name": "updated_at",
+                            "type": "datetime",
+                            "null": true
+                        },
+                        {
+                            "name": "deleted_at",
+                            "type": "datetime",
+                            "null": true
+                        }
+                    ],
+                    "primary_key": { "parts": [{ "column": "id" }] },
+                    "foreign_keys": [
+                        {
+                            "name": "0",
+                            "columns": ["stage_id_ref"],
+                            "references": {
+                                "table": "stages",
+                                "columns": ["id"]
+                            }
+                        },
+                        {
+                            "name": "1",
+                            "columns": ["player_2_id_ref"],
+                            "references": {
+                                "table": "players",
+                                "columns": ["id"]
+                            }
+                        },
+                        {
+                            "name": "2",
+                            "columns": ["player_1_id_ref"],
+                            "references": {
+                                "table": "players",
+                                "columns": ["id"]
+                            }
+                        },
+                        {
+                            "name": "3",
+                            "columns": ["updated_user_id_ref"],
+                            "references": {
+                                "table": "users",
+                                "columns": ["id"]
+                            }
+                        },
+                        {
+                            "name": "4",
+                            "columns": ["created_user_id_ref"],
+                            "references": {
+                                "table": "users",
+                                "columns": ["id"]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "match_1v1_events",
+                    "columns": [
+                        { "name": "id", "type": "INTEGER" },
+                        {
+                            "name": "played_at",
+                            "type": "datetime",
+                            "null": true
+                        },
+                        { "name": "tournament_id", "type": "INTEGER" },
+                        { "name": "best_of", "type": "INTEGER", "null": true },
+                        { "name": "created_user_id_ref", "type": "INTEGER" },
+                        { "name": "updated_user_id_ref", "type": "INTEGER" },
+                        { "name": "player_1_id_ref", "type": "INTEGER" },
+                        { "name": "player_2_id_ref", "type": "INTEGER" },
+                        { "name": "stage_id_ref", "type": "INTEGER" },
+                        {
+                            "name": "created_at",
+                            "type": "datetime",
+                            "null": true
+                        },
+                        {
+                            "name": "updated_at",
+                            "type": "datetime",
+                            "null": true
+                        },
+                        {
+                            "name": "deleted_at",
+                            "type": "datetime",
+                            "null": true
+                        }
+                    ],
+                    "primary_key": { "parts": [{ "column": "id" }] },
+                    "foreign_keys": [
+                        {
+                            "name": "0",
+                            "columns": ["stage_id_ref"],
+                            "references": {
+                                "table": "stages",
+                                "columns": ["id"]
+                            }
+                        },
+                        {
+                            "name": "1",
+                            "columns": ["player_2_id_ref"],
+                            "references": {
+                                "table": "players",
+                                "columns": ["id"]
+                            }
+                        },
+                        {
+                            "name": "2",
+                            "columns": ["player_1_id_ref"],
+                            "references": {
+                                "table": "players",
+                                "columns": ["id"]
+                            }
+                        },
+                        {
+                            "name": "3",
+                            "columns": ["updated_user_id_ref"],
+                            "references": {
+                                "table": "users",
+                                "columns": ["id"]
+                            }
+                        },
+                        {
+                            "name": "4",
+                            "columns": ["created_user_id_ref"],
+                            "references": {
+                                "table": "users",
+                                "columns": ["id"]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "players",
+                    "columns": [
+                        { "name": "id", "type": "INTEGER" },
+                        { "name": "name", "type": "varchar" },
+                        { "name": "aliases", "type": "varchar" },
+                        {
+                            "name": "initial_elo_1v1",
+                            "type": "INTEGER",
+                            "null": true
+                        },
+                        {
+                            "name": "voobly_id",
+                            "type": "varchar",
+                            "null": true
+                        },
+                        {
+                            "name": "relic_link_id",
+                            "type": "varchar",
+                            "null": true
+                        },
+                        {
+                            "name": "aoe_reference_data_players_id",
+                            "type": "varchar",
+                            "null": true
+                        },
+                        { "name": "steam_id", "type": "varchar", "null": true },
+                        {
+                            "name": "steam_id_failed",
+                            "type": "varchar",
+                            "null": true
+                        },
+                        {
+                            "name": "liquipedia",
+                            "type": "varchar",
+                            "null": true
+                        },
+                        { "name": "twitch", "type": "varchar", "null": true },
+                        { "name": "youtube", "type": "varchar", "null": true },
+                        {
+                            "name": "x_twitter",
+                            "type": "varchar",
+                            "null": true
+                        },
+                        { "name": "facebook", "type": "varchar", "null": true },
+                        { "name": "team_id_ref", "type": "INTEGER" },
+                        { "name": "created_user_id_ref", "type": "INTEGER" },
+                        { "name": "updated_user_id_ref", "type": "INTEGER" },
+                        { "name": "country_id_ref", "type": "INTEGER" },
+                        {
+                            "name": "created_at",
+                            "type": "datetime",
+                            "null": true
+                        },
+                        {
+                            "name": "updated_at",
+                            "type": "datetime",
+                            "null": true
+                        },
+                        {
+                            "name": "deleted_at",
+                            "type": "datetime",
+                            "null": true
+                        }
+                    ],
+                    "primary_key": { "parts": [{ "column": "id" }] },
+                    "foreign_keys": [
+                        {
+                            "name": "0",
+                            "columns": ["country_id_ref"],
+                            "references": {
+                                "table": "countries",
+                                "columns": ["id"]
+                            }
+                        },
+                        {
+                            "name": "1",
+                            "columns": ["updated_user_id_ref"],
+                            "references": {
+                                "table": "users",
+                                "columns": ["id"]
+                            }
+                        },
+                        {
+                            "name": "2",
+                            "columns": ["created_user_id_ref"],
+                            "references": {
+                                "table": "users",
+                                "columns": ["id"]
+                            }
+                        },
+                        {
+                            "name": "3",
+                            "columns": ["team_id_ref"],
+                            "references": {
+                                "table": "teams",
+                                "columns": ["id"]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "players_info",
+                    "columns": [
+                        { "name": "id", "type": "INTEGER" },
+                        { "name": "type", "type": "varchar" },
+                        {
+                            "name": "value_int",
+                            "type": "INTEGER",
+                            "null": true
+                        },
+                        { "name": "value_str", "type": "TEXT" },
+                        { "name": "created_user_id_ref", "type": "INTEGER" },
+                        { "name": "updated_user_id_ref", "type": "INTEGER" },
+                        { "name": "player_id_ref", "type": "INTEGER" },
+                        {
+                            "name": "created_at",
+                            "type": "datetime",
+                            "null": true
+                        },
+                        {
+                            "name": "updated_at",
+                            "type": "datetime",
+                            "null": true
+                        },
+                        {
+                            "name": "deleted_at",
+                            "type": "datetime",
+                            "null": true
+                        }
+                    ],
+                    "primary_key": { "parts": [{ "column": "id" }] },
+                    "foreign_keys": [
+                        {
+                            "name": "0",
+                            "columns": ["player_id_ref"],
+                            "references": {
+                                "table": "players",
+                                "columns": ["id"]
+                            }
+                        },
+                        {
+                            "name": "1",
+                            "columns": ["updated_user_id_ref"],
+                            "references": {
+                                "table": "users",
+                                "columns": ["id"]
+                            }
+                        },
+                        {
+                            "name": "2",
+                            "columns": ["created_user_id_ref"],
+                            "references": {
+                                "table": "users",
+                                "columns": ["id"]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "stages",
+                    "columns": [
+                        { "name": "id", "type": "INTEGER" },
+                        { "name": "name", "type": "varchar" },
+                        { "name": "bracket", "type": "INTEGER" },
+                        { "name": "index", "type": "INTEGER" },
+                        { "name": "weight", "type": "float" },
+                        { "name": "importance", "type": "INTEGER" },
+                        {
+                            "name": "created_at",
+                            "type": "datetime",
+                            "null": true
+                        },
+                        {
+                            "name": "updated_at",
+                            "type": "datetime",
+                            "null": true
+                        },
+                        {
+                            "name": "deleted_at",
+                            "type": "datetime",
+                            "null": true
+                        }
+                    ],
+                    "primary_key": { "parts": [{ "column": "id" }] }
+                },
+                {
+                    "name": "subscriptions",
+                    "columns": [
+                        { "name": "id", "type": "INTEGER" },
+                        {
+                            "name": "created_at",
+                            "type": "datetime",
+                            "null": true
+                        },
+                        {
+                            "name": "updated_at",
+                            "type": "datetime",
+                            "null": true
+                        },
+                        { "name": "email", "type": "TEXT" },
+                        { "name": "session", "type": "TEXT" }
+                    ],
+                    "primary_key": { "parts": [{ "column": "id" }] }
+                },
+                {
+                    "name": "teams",
+                    "columns": [
+                        { "name": "id", "type": "INTEGER" },
+                        { "name": "name", "type": "varchar" },
+                        { "name": "tag", "type": "varchar" },
+                        {
+                            "name": "aoe_reference_data_teams_id",
+                            "type": "varchar",
+                            "null": true
+                        },
+                        {
+                            "name": "primary_color",
+                            "type": "varchar",
+                            "null": true
+                        },
+                        {
+                            "name": "secondary_color",
+                            "type": "varchar",
+                            "null": true
+                        },
+                        { "name": "created_user_id_ref", "type": "INTEGER" },
+                        { "name": "updated_user_id_ref", "type": "INTEGER" },
+                        {
+                            "name": "created_at",
+                            "type": "datetime",
+                            "null": true
+                        },
+                        {
+                            "name": "updated_at",
+                            "type": "datetime",
+                            "null": true
+                        },
+                        {
+                            "name": "deleted_at",
+                            "type": "datetime",
+                            "null": true
+                        }
+                    ],
+                    "primary_key": { "parts": [{ "column": "id" }] },
+                    "foreign_keys": [
+                        {
+                            "name": "0",
+                            "columns": ["updated_user_id_ref"],
+                            "references": {
+                                "table": "users",
+                                "columns": ["id"]
+                            }
+                        },
+                        {
+                            "name": "1",
+                            "columns": ["created_user_id_ref"],
+                            "references": {
+                                "table": "users",
+                                "columns": ["id"]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "tournaments",
+                    "columns": [
+                        { "name": "id", "type": "INTEGER" },
+                        { "name": "name", "type": "varchar" },
+                        { "name": "short_name", "type": "varchar" },
+                        {
+                            "name": "started_at",
+                            "type": "datetime",
+                            "null": true
+                        },
+                        {
+                            "name": "ended_at",
+                            "type": "datetime",
+                            "null": true
+                        },
+                        { "name": "weight", "type": "INTEGER" },
+                        { "name": "type", "type": "varchar" },
+                        {
+                            "name": "prizemoney",
+                            "type": "INTEGER",
+                            "null": true
+                        },
+                        { "name": "structure", "type": "varchar" },
+                        {
+                            "name": "evaluation",
+                            "type": "varchar",
+                            "null": true
+                        },
+                        { "name": "website", "type": "TEXT" },
+                        { "name": "comment", "type": "TEXT" },
+                        { "name": "created_user_id_ref", "type": "INTEGER" },
+                        { "name": "updated_user_id_ref", "type": "INTEGER" },
+                        {
+                            "name": "parent_tournament_id_ref",
+                            "type": "INTEGER"
+                        },
+                        {
+                            "name": "created_at",
+                            "type": "datetime",
+                            "null": true
+                        },
+                        {
+                            "name": "updated_at",
+                            "type": "datetime",
+                            "null": true
+                        },
+                        {
+                            "name": "deleted_at",
+                            "type": "datetime",
+                            "null": true
+                        }
+                    ],
+                    "primary_key": { "parts": [{ "column": "id" }] },
+                    "foreign_keys": [
+                        {
+                            "name": "0",
+                            "columns": ["parent_tournament_id_ref"],
+                            "references": {
+                                "table": "tournaments",
+                                "columns": ["id"]
+                            }
+                        },
+                        {
+                            "name": "1",
+                            "columns": ["updated_user_id_ref"],
+                            "references": {
+                                "table": "users",
+                                "columns": ["id"]
+                            }
+                        },
+                        {
+                            "name": "2",
+                            "columns": ["created_user_id_ref"],
+                            "references": {
+                                "table": "users",
+                                "columns": ["id"]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "tournaments_info",
+                    "columns": [
+                        { "name": "id", "type": "INTEGER" },
+                        { "name": "type", "type": "INTEGER" },
+                        { "name": "description", "type": "TEXT" },
+                        { "name": "value", "type": "TEXT" },
+                        { "name": "created_user_id_ref", "type": "INTEGER" },
+                        { "name": "updated_user_id_ref", "type": "INTEGER" },
+                        { "name": "tournament_id_ref", "type": "INTEGER" },
+                        {
+                            "name": "created_at",
+                            "type": "datetime",
+                            "null": true
+                        },
+                        {
+                            "name": "updated_at",
+                            "type": "datetime",
+                            "null": true
+                        },
+                        {
+                            "name": "deleted_at",
+                            "type": "datetime",
+                            "null": true
+                        }
+                    ],
+                    "primary_key": { "parts": [{ "column": "id" }] },
+                    "foreign_keys": [
+                        {
+                            "name": "0",
+                            "columns": ["tournament_id_ref"],
+                            "references": {
+                                "table": "tournaments",
+                                "columns": ["id"]
+                            }
+                        },
+                        {
+                            "name": "1",
+                            "columns": ["updated_user_id_ref"],
+                            "references": {
+                                "table": "users",
+                                "columns": ["id"]
+                            }
+                        },
+                        {
+                            "name": "2",
+                            "columns": ["created_user_id_ref"],
+                            "references": {
+                                "table": "users",
+                                "columns": ["id"]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "tournaments_results",
+                    "columns": [
+                        { "name": "id", "type": "INTEGER" },
+                        { "name": "type", "type": "INTEGER" },
+                        { "name": "money", "type": "INTEGER", "null": true },
+                        { "name": "source", "type": "TEXT" },
+                        { "name": "created_user_id_ref", "type": "INTEGER" },
+                        { "name": "updated_user_id_ref", "type": "INTEGER" },
+                        { "name": "tournament_id_ref", "type": "INTEGER" },
+                        { "name": "player_id_ref", "type": "INTEGER" },
+                        {
+                            "name": "created_at",
+                            "type": "datetime",
+                            "null": true
+                        },
+                        {
+                            "name": "updated_at",
+                            "type": "datetime",
+                            "null": true
+                        },
+                        {
+                            "name": "deleted_at",
+                            "type": "datetime",
+                            "null": true
+                        }
+                    ],
+                    "primary_key": { "parts": [{ "column": "id" }] },
+                    "foreign_keys": [
+                        {
+                            "name": "0",
+                            "columns": ["player_id_ref"],
+                            "references": {
+                                "table": "players",
+                                "columns": ["id"]
+                            }
+                        },
+                        {
+                            "name": "1",
+                            "columns": ["tournament_id_ref"],
+                            "references": {
+                                "table": "tournaments",
+                                "columns": ["id"]
+                            }
+                        },
+                        {
+                            "name": "2",
+                            "columns": ["updated_user_id_ref"],
+                            "references": {
+                                "table": "users",
+                                "columns": ["id"]
+                            }
+                        },
+                        {
+                            "name": "3",
+                            "columns": ["created_user_id_ref"],
+                            "references": {
+                                "table": "users",
+                                "columns": ["id"]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "users",
+                    "columns": [
+                        { "name": "id", "type": "INTEGER" },
+                        { "name": "name", "type": "varchar" },
+                        { "name": "email", "type": "varchar" },
+                        {
+                            "name": "email_verified_at",
+                            "type": "datetime",
+                            "null": true
+                        },
+                        { "name": "password", "type": "varchar" },
+                        {
+                            "name": "player_id_ref",
+                            "type": "INTEGER",
+                            "null": true
+                        },
+                        {
+                            "name": "remember_token",
+                            "type": "varchar",
+                            "null": true
+                        },
+                        {
+                            "name": "created_at",
+                            "type": "datetime",
+                            "null": true
+                        },
+                        {
+                            "name": "updated_at",
+                            "type": "datetime",
+                            "null": true
+                        },
+                        {
+                            "name": "deleted_at",
+                            "type": "datetime",
+                            "null": true
+                        }
+                    ],
+                    "indexes": [
+                        {
+                            "name": "users_email_unique",
+                            "unique": true,
+                            "parts": [{ "column": "email" }]
+                        }
+                    ],
+                    "primary_key": { "parts": [{ "column": "id" }] },
+                    "foreign_keys": [
+                        {
+                            "name": "0",
+                            "columns": ["player_id_ref"],
+                            "references": {
+                                "table": "players",
+                                "columns": ["id"]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "password_reset_tokens",
+                    "columns": [
+                        { "name": "email", "type": "varchar" },
+                        { "name": "token", "type": "varchar" },
+                        {
+                            "name": "created_at",
+                            "type": "datetime",
+                            "null": true
+                        }
+                    ],
+                    "primary_key": { "parts": [{ "column": "email" }] }
+                },
+                {
+                    "name": "telescope_entries",
+                    "columns": [
+                        { "name": "sequence", "type": "INTEGER" },
+                        { "name": "uuid", "type": "varchar" },
+                        { "name": "batch_id", "type": "varchar" },
+                        {
+                            "name": "family_hash",
+                            "type": "varchar",
+                            "null": true
+                        },
+                        {
+                            "name": "should_display_on_index",
+                            "type": "tinyint(1)"
+                        },
+                        { "name": "type", "type": "varchar" },
+                        { "name": "content", "type": "TEXT" },
+                        {
+                            "name": "created_at",
+                            "type": "datetime",
+                            "null": true
+                        }
+                    ],
+                    "indexes": [
+                        {
+                            "name": "telescope_entries_uuid_unique",
+                            "unique": true,
+                            "parts": [{ "column": "uuid" }]
+                        },
+                        {
+                            "name": "telescope_entries_batch_id_index",
+                            "parts": [{ "column": "batch_id" }]
+                        },
+                        {
+                            "name": "telescope_entries_family_hash_index",
+                            "parts": [{ "column": "family_hash" }]
+                        },
+                        {
+                            "name": "telescope_entries_created_at_index",
+                            "parts": [{ "column": "created_at" }]
+                        },
+                        {
+                            "name": "telescope_entries_type_should_display_on_index_index",
+                            "parts": [
+                                { "column": "type" },
+                                { "column": "should_display_on_index" }
+                            ]
+                        }
+                    ],
+                    "primary_key": { "parts": [{ "column": "sequence" }] }
+                },
+                {
+                    "name": "telescope_entries_tags",
+                    "columns": [
+                        { "name": "entry_uuid", "type": "varchar" },
+                        { "name": "tag", "type": "varchar" }
+                    ],
+                    "indexes": [
+                        {
+                            "name": "telescope_entries_tags_entry_uuid_tag_index",
+                            "parts": [
+                                { "column": "entry_uuid" },
+                                { "column": "tag" }
+                            ]
+                        },
+                        {
+                            "name": "telescope_entries_tags_tag_index",
+                            "parts": [{ "column": "tag" }]
+                        }
+                    ],
+                    "foreign_keys": [
+                        {
+                            "name": "0",
+                            "columns": ["entry_uuid"],
+                            "references": {
+                                "table": "telescope_entries",
+                                "columns": ["uuid"]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "telescope_monitoring",
+                    "columns": [{ "name": "tag", "type": "varchar" }]
+                },
+                {
+                    "name": "failed_jobs",
+                    "columns": [
+                        { "name": "id", "type": "INTEGER" },
+                        { "name": "uuid", "type": "varchar" },
+                        { "name": "connection", "type": "TEXT" },
+                        { "name": "queue", "type": "TEXT" },
+                        { "name": "payload", "type": "TEXT" },
+                        { "name": "exception", "type": "TEXT" },
+                        { "name": "failed_at", "type": "datetime" }
+                    ],
+                    "indexes": [
+                        {
+                            "name": "failed_jobs_uuid_unique",
+                            "unique": true,
+                            "parts": [{ "column": "uuid" }]
+                        }
+                    ],
+                    "primary_key": { "parts": [{ "column": "id" }] }
+                },
+                {
+                    "name": "personal_access_tokens",
+                    "columns": [
+                        { "name": "id", "type": "INTEGER" },
+                        { "name": "tokenable_type", "type": "varchar" },
+                        { "name": "tokenable_id", "type": "INTEGER" },
+                        { "name": "name", "type": "varchar" },
+                        { "name": "token", "type": "varchar" },
+                        { "name": "abilities", "type": "TEXT", "null": true },
+                        {
+                            "name": "last_used_at",
+                            "type": "datetime",
+                            "null": true
+                        },
+                        {
+                            "name": "expires_at",
+                            "type": "datetime",
+                            "null": true
+                        },
+                        {
+                            "name": "created_at",
+                            "type": "datetime",
+                            "null": true
+                        },
+                        {
+                            "name": "updated_at",
+                            "type": "datetime",
+                            "null": true
+                        }
+                    ],
+                    "indexes": [
+                        {
+                            "name": "personal_access_tokens_tokenable_type_tokenable_id_index",
+                            "parts": [
+                                { "column": "tokenable_type" },
+                                { "column": "tokenable_id" }
+                            ]
+                        },
+                        {
+                            "name": "personal_access_tokens_token_unique",
+                            "unique": true,
+                            "parts": [{ "column": "token" }]
+                        }
+                    ],
+                    "primary_key": { "parts": [{ "column": "id" }] }
+                },
+                {
+                    "name": "telemetry",
+                    "columns": [
+                        { "name": "id", "type": "INTEGER" },
+                        {
+                            "name": "created_at",
+                            "type": "datetime",
+                            "null": true
+                        },
+                        {
+                            "name": "updated_at",
+                            "type": "datetime",
+                            "null": true
+                        }
+                    ],
+                    "primary_key": { "parts": [{ "column": "id" }] }
+                },
+                {
+                    "name": "cache_most_visited",
+                    "columns": [
+                        { "name": "id", "type": "INTEGER" },
+                        { "name": "page", "type": "varchar" },
+                        {
+                            "name": "entity_id",
+                            "type": "INTEGER",
+                            "null": true
+                        },
+                        { "name": "visits", "type": "INTEGER" },
+                        {
+                            "name": "created_at",
+                            "type": "datetime",
+                            "null": true
+                        },
+                        {
+                            "name": "updated_at",
+                            "type": "datetime",
+                            "null": true
+                        }
+                    ],
+                    "primary_key": { "parts": [{ "column": "id" }] }
+                },
+                {
+                    "name": "meta_cache",
+                    "columns": [
+                        { "name": "id", "type": "INTEGER" },
+                        { "name": "name", "type": "INTEGER" },
+                        { "name": "value_int", "type": "INTEGER" },
+                        { "name": "value_float", "type": "float" },
+                        { "name": "value_str", "type": "TEXT" }
+                    ],
+                    "primary_key": { "parts": [{ "column": "id" }] }
+                },
+                {
+                    "name": "elo_1v1_cache",
+                    "columns": [
+                        { "name": "id", "type": "INTEGER" },
+                        { "name": "type", "type": "varchar" },
+                        { "name": "match_id", "type": "INTEGER", "null": true },
+                        { "name": "player_id", "type": "INTEGER" },
+                        { "name": "elo_before", "type": "INTEGER" },
+                        { "name": "elo_after", "type": "INTEGER" },
+                        { "name": "match_time", "type": "datetime" },
+                        {
+                            "name": "tournament_id",
+                            "type": "INTEGER",
+                            "null": true
+                        },
+                        {
+                            "name": "created_at",
+                            "type": "datetime",
+                            "null": true
+                        },
+                        {
+                            "name": "updated_at",
+                            "type": "datetime",
+                            "null": true
+                        }
+                    ],
+                    "primary_key": { "parts": [{ "column": "id" }] }
+                },
+                {
+                    "name": "extern_de_cache",
+                    "columns": [
+                        { "name": "id", "type": "INTEGER" },
+                        { "name": "steam_id", "type": "varchar" },
+                        { "name": "rating", "type": "INTEGER" },
+                        { "name": "rank", "type": "INTEGER" },
+                        {
+                            "name": "created_at",
+                            "type": "datetime",
+                            "null": true
+                        },
+                        {
+                            "name": "updated_at",
+                            "type": "datetime",
+                            "null": true
+                        }
+                    ],
+                    "primary_key": { "parts": [{ "column": "id" }] }
+                },
+                {
+                    "name": "extern_voobly_cache",
+                    "columns": [
+                        { "name": "id", "type": "INTEGER" },
+                        { "name": "voobly_id", "type": "INTEGER" },
+                        { "name": "ladder", "type": "INTEGER" },
+                        {
+                            "name": "created_at",
+                            "type": "datetime",
+                            "null": true
+                        },
+                        {
+                            "name": "updated_at",
+                            "type": "datetime",
+                            "null": true
+                        }
+                    ],
+                    "primary_key": { "parts": [{ "column": "id" }] }
+                },
+                {
+                    "name": "extern_voobly_player_cache",
+                    "columns": [
+                        { "name": "id", "type": "INTEGER" },
+                        { "name": "voobly_id", "type": "INTEGER" },
+                        { "name": "rm_1v1", "type": "INTEGER" },
+                        { "name": "rm_tg", "type": "INTEGER" },
+                        {
+                            "name": "created_at",
+                            "type": "datetime",
+                            "null": true
+                        },
+                        {
+                            "name": "updated_at",
+                            "type": "datetime",
+                            "null": true
+                        }
+                    ],
+                    "primary_key": { "parts": [{ "column": "id" }] }
+                },
+                {
+                    "name": "news",
+                    "columns": [
+                        { "name": "id", "type": "INTEGER" },
+                        { "name": "title", "type": "TEXT" },
+                        { "name": "abstract", "type": "TEXT", "null": true },
+                        { "name": "content", "type": "TEXT" },
+                        { "name": "description", "type": "TEXT", "null": true },
+                        { "name": "tags", "type": "TEXT", "null": true },
+                        { "name": "created_user_id_ref", "type": "INTEGER" },
+                        { "name": "updated_user_id_ref", "type": "INTEGER" },
+                        {
+                            "name": "created_at",
+                            "type": "datetime",
+                            "null": true
+                        },
+                        {
+                            "name": "updated_at",
+                            "type": "datetime",
+                            "null": true
+                        },
+                        {
+                            "name": "deleted_at",
+                            "type": "datetime",
+                            "null": true
+                        }
+                    ],
+                    "primary_key": { "parts": [{ "column": "id" }] },
+                    "foreign_keys": [
+                        {
+                            "name": "0",
+                            "columns": ["updated_user_id_ref"],
+                            "references": {
+                                "table": "users",
+                                "columns": ["id"]
+                            }
+                        },
+                        {
+                            "name": "1",
+                            "columns": ["created_user_id_ref"],
+                            "references": {
+                                "table": "users",
+                                "columns": ["id"]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "cache",
+                    "columns": [
+                        { "name": "key", "type": "varchar" },
+                        { "name": "value", "type": "TEXT" },
+                        { "name": "expiration", "type": "INTEGER" }
+                    ],
+                    "primary_key": { "parts": [{ "column": "key" }] }
+                },
+                {
+                    "name": "cache_locks",
+                    "columns": [
+                        { "name": "key", "type": "varchar" },
+                        { "name": "owner", "type": "varchar" },
+                        { "name": "expiration", "type": "INTEGER" }
+                    ],
+                    "primary_key": { "parts": [{ "column": "key" }] }
+                },
+                {
+                    "name": "jobs",
+                    "columns": [
+                        { "name": "id", "type": "INTEGER" },
+                        { "name": "queue", "type": "varchar" },
+                        { "name": "payload", "type": "TEXT" },
+                        { "name": "attempts", "type": "INTEGER" },
+                        {
+                            "name": "reserved_at",
+                            "type": "INTEGER",
+                            "null": true
+                        },
+                        { "name": "available_at", "type": "INTEGER" },
+                        { "name": "created_at", "type": "INTEGER" }
+                    ],
+                    "indexes": [
+                        {
+                            "name": "jobs_queue_index",
+                            "parts": [{ "column": "queue" }]
+                        }
+                    ],
+                    "primary_key": { "parts": [{ "column": "id" }] }
+                },
+                {
+                    "name": "sessions",
+                    "columns": [
+                        { "name": "id", "type": "varchar" },
+                        { "name": "user_id", "type": "INTEGER", "null": true },
+                        {
+                            "name": "ip_address",
+                            "type": "varchar",
+                            "null": true
+                        },
+                        { "name": "user_agent", "type": "TEXT", "null": true },
+                        { "name": "payload", "type": "TEXT" },
+                        { "name": "last_activity", "type": "INTEGER" }
+                    ],
+                    "indexes": [
+                        {
+                            "name": "sessions_last_activity_index",
+                            "parts": [{ "column": "last_activity" }]
+                        }
+                    ],
+                    "primary_key": { "parts": [{ "column": "id" }] },
+                    "foreign_keys": [
+                        {
+                            "name": "0",
+                            "columns": ["user_id"],
+                            "references": {
+                                "table": "users",
+                                "columns": ["id"]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "permissions",
+                    "columns": [
+                        { "name": "id", "type": "INTEGER" },
+                        { "name": "name", "type": "varchar" },
+                        { "name": "guard_name", "type": "varchar" },
+                        {
+                            "name": "created_at",
+                            "type": "datetime",
+                            "null": true
+                        },
+                        {
+                            "name": "updated_at",
+                            "type": "datetime",
+                            "null": true
+                        }
+                    ],
+                    "indexes": [
+                        {
+                            "name": "permissions_name_guard_name_unique",
+                            "unique": true,
+                            "parts": [
+                                { "column": "name" },
+                                { "column": "guard_name" }
+                            ]
+                        }
+                    ],
+                    "primary_key": { "parts": [{ "column": "id" }] }
+                },
+                {
+                    "name": "roles",
+                    "columns": [
+                        { "name": "id", "type": "INTEGER" },
+                        { "name": "team_id", "type": "INTEGER", "null": true },
+                        { "name": "name", "type": "varchar" },
+                        { "name": "guard_name", "type": "varchar" },
+                        {
+                            "name": "created_at",
+                            "type": "datetime",
+                            "null": true
+                        },
+                        {
+                            "name": "updated_at",
+                            "type": "datetime",
+                            "null": true
+                        }
+                    ],
+                    "indexes": [
+                        {
+                            "name": "roles_team_foreign_key_index",
+                            "parts": [{ "column": "team_id" }]
+                        },
+                        {
+                            "name": "roles_team_id_name_guard_name_unique",
+                            "unique": true,
+                            "parts": [
+                                { "column": "team_id" },
+                                { "column": "name" },
+                                { "column": "guard_name" }
+                            ]
+                        }
+                    ],
+                    "primary_key": { "parts": [{ "column": "id" }] }
+                },
+                {
+                    "name": "model_has_permissions",
+                    "columns": [
+                        { "name": "permission_id", "type": "INTEGER" },
+                        { "name": "model_type", "type": "varchar" },
+                        { "name": "model_id", "type": "INTEGER" },
+                        { "name": "team_id", "type": "INTEGER" }
+                    ],
+                    "indexes": [
+                        {
+                            "name": "model_has_permissions_model_id_model_type_index",
+                            "parts": [
+                                { "column": "model_id" },
+                                { "column": "model_type" }
+                            ]
+                        },
+                        {
+                            "name": "model_has_permissions_team_foreign_key_index",
+                            "parts": [{ "column": "team_id" }]
+                        }
+                    ],
+                    "primary_key": {
+                        "parts": [
+                            { "column": "permission_id" },
+                            { "column": "model_type" },
+                            { "column": "model_id" },
+                            { "column": "team_id" }
+                        ]
+                    },
+                    "foreign_keys": [
+                        {
+                            "name": "0",
+                            "columns": ["permission_id"],
+                            "references": {
+                                "table": "permissions",
+                                "columns": ["id"]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "model_has_roles",
+                    "columns": [
+                        { "name": "role_id", "type": "INTEGER" },
+                        { "name": "model_type", "type": "varchar" },
+                        { "name": "model_id", "type": "INTEGER" },
+                        { "name": "team_id", "type": "INTEGER" }
+                    ],
+                    "indexes": [
+                        {
+                            "name": "model_has_roles_model_id_model_type_index",
+                            "parts": [
+                                { "column": "model_id" },
+                                { "column": "model_type" }
+                            ]
+                        },
+                        {
+                            "name": "model_has_roles_team_foreign_key_index",
+                            "parts": [{ "column": "team_id" }]
+                        }
+                    ],
+                    "primary_key": {
+                        "parts": [
+                            { "column": "role_id" },
+                            { "column": "model_type" },
+                            { "column": "model_id" },
+                            { "column": "team_id" }
+                        ]
+                    },
+                    "foreign_keys": [
+                        {
+                            "name": "0",
+                            "columns": ["role_id"],
+                            "references": {
+                                "table": "roles",
+                                "columns": ["id"]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "role_has_permissions",
+                    "columns": [
+                        { "name": "permission_id", "type": "INTEGER" },
+                        { "name": "role_id", "type": "INTEGER" }
+                    ],
+                    "primary_key": {
+                        "parts": [
+                            { "column": "permission_id" },
+                            { "column": "role_id" }
+                        ]
+                    },
+                    "foreign_keys": [
+                        {
+                            "name": "0",
+                            "columns": ["role_id"],
+                            "references": {
+                                "table": "roles",
+                                "columns": ["id"]
+                            }
+                        },
+                        {
+                            "name": "1",
+                            "columns": ["permission_id"],
+                            "references": {
+                                "table": "permissions",
+                                "columns": ["id"]
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

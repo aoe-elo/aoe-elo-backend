@@ -1,0 +1,14 @@
+* text=auto eol=lf
+*.blade.php diff=html
+*.css diff=css
+*.html diff=html
+*.md diff=markdown
+*.php diff=php
+/.github export-ignore
+CHANGELOG.md export-ignore
+.styleci.yml export-ignore
+aoe2map.sqlite filter=lfs diff=lfs merge=lfs -text
+*.png filter=lfs diff=lfs merge=lfs -text
+database/database.sqlite filter=git-crypt diff=git-crypt
+.env filter=git-crypt diff=git-crypt
+app/legacy/** filter=git-crypt diff=git-crypt

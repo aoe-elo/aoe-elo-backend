@@ -1,0 +1,122 @@
+@startuml components
+cloud GithubData
+database SQLite
+interface HTTP
+
+Eloquent --> SQLite : accesses
+
+folder "App\Controllers\Web" {
+    [NewsController]
+    [PlayerController]
+    [StatisticController]
+    [TeamController]
+    [TournamentController]
+    [TournamentResultController]
+    [ProfileController]
+}
+
+folder "App\Resources" {
+    [PlayerResource]
+    [TeamResource]
+    [TournamentResource]
+}
+
+package Router {
+    folder Web {
+        [/news] --> [NewsController] : uses
+        [/players] --> [PlayerController] : uses
+        [/statistics] --> [StatisticController] : uses
+        [/teams] --> [TeamController] : uses
+        [/tournaments] --> [TournamentController] : uses
+        [/profile] --> [ProfileController] : uses
+        [/tournaments/{tournament}/results] --> [TournamentResultController] : uses
+    }
+
+    folder API {
+        [v1/players] --> [PlayerResource] : uses
+        [v1/teams] --> [TeamResource] : uses
+        [v1/tournaments] --> [TournamentResource] : uses
+    }
+}
+
+HTTP ..> Router
+
+folder "App\Repositories" {
+    [NewsRepository]
+    [PlayerRepository]
+    [TeamRepository]
+    [TournamentRepository]
+    [TournamentResultRepository]
+    [Elo1v1CacheRepository]
+}
+
+PlayerRepositoryInterface <|-- [PlayerRepository] : implements
+TeamRepositoryInterface <|-- [TeamRepository] : implements
+NewsRepositoryInterface <|-- [NewsRepository] : implements
+TournamentRepositoryInterface <|-- [TournamentRepository] : implements
+TournamentResultRepositoryInterface <|-- [TournamentResultRepository] : implements
+Elo1v1CacheRepositoryInterface <|-- [Elo1v1CacheRepository] : implements
+
+folder "Models" {
+    [News]
+    [Player]
+    [Team]
+    [Tournament]
+    [TournamentResult]
+    [User]
+    [Elo1v1Cache]
+}
+
+PlayerRepository ..> Player : uses
+TeamRepository ..> Team : uses
+NewsRepository ..> News : uses
+TournamentRepository ..> Tournament : uses
+TournamentResultRepository ..> TournamentResult : uses
+Elo1v1CacheRepository ..> Elo1v1Cache : uses
+
+
+folder "App\Jobs" {
+    [RebuildEloHistory]
+    [UpdateAoERefData]
+}
+
+folder "App\Services\Elo"{
+    [EloCalculationService]
+    [EloHistoryService]
+    [EloHolderService]
+}
+
+folder "App\Services\Statistics" {
+    [PlayerStatsController]
+    [TeamStatsController]
+    [MatchStatsController]
+    [TournamentStatsController]
+}
+
+[EloCalculationService] ..> [EloHistoryService] : uses
+[ProfileController] ..> [User] : uses
+[NewsController] ..> [NewsRepositoryInterface] : uses
+[PlayerController] ..> [PlayerRepositoryInterface] : uses
+[TeamController] ..> [TeamRepositoryInterface] : uses
+[TournamentController] ..> [TournamentRepositoryInterface] : uses
+[TournamentResultController] ..> [TournamentResultRepositoryInterface] : uses
+
+[PlayerResource] ..> [PlayerRepositoryInterface] : uses
+[TeamResource] ..> [TeamRepositoryInterface] : uses
+[TournamentResource] ..> [TournamentRepositoryInterface] : uses
+
+
+[EloHistoryService] ..> [Elo1v1CacheRepositoryInterface] : uses
+
+[RebuildEloHistory] ..> [EloHistoryService] : uses
+[UpdateAoERefData] ..> [GithubData] : uses
+
+News ..> Eloquent : uses
+Player ..> Eloquent : uses
+Team ..> Eloquent : uses
+Tournament ..> Eloquent : uses
+TournamentResult ..> Eloquent : uses
+User ..> Eloquent : uses
+Elo1v1Cache ..> Eloquent : uses
+
+@enduml

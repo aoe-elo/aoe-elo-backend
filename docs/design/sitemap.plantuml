@@ -1,0 +1,49 @@
+@startwbs sitemap
+* Home
+** News
+** Search players/tournaments/teams
+*** user-friendly
+*** search and study retired players too
+** Matches
+*** direct links to game footage lets me study and appreciate gameplay, especially from significant or iconic matches
+** Tournaments
+*** Historical Matches
+*** Tournament list
+*** Tournament Results
+*** summaries of recent major tournaments
+*** archived tournaments
+*** simulate tournament brackets
+** Players
+*** monitor emerging talents
+*** Current Top Players
+*** Player List
+*** player highlights
+*** popular players on the rise
+*** player profiles
+**** seeing a neat and organized display of their victories and milestones
+**** receive alerts or notifications when his rating changes or when there's an update about a new tournament
+*** track and compare the ELO progression of players
+*** Old-time players + rating
+*** player performance metrics
+*** player profiles with emphasis on recent performance
+*** player rating for seeding
+*** notable achievements
+*** long-term player career arcs
+*** compare two or more players side by side
+*** historical matches
+*** financial rewards players have garnered over the years
+*** annual breakdown of player performance
+*** player's main rivals were and who they consistently struggled against or triumphed over
+*** player's affiliations and the teams they've played with
+** Teams
+*** Team list
+*** Historical Matches
+** Login / Register
+*** Dashboard (Authenticated)
+** About
+*** Beginners guide on rating system
+** Other (tbd)
+*** performance trends
+*** detailed match statistics
+*** real-time competitive landscape updates
+@endwbs

@@ -1,0 +1,6 @@
+public/index.php
+app/
+config/
+database/
+routes/
+tests/

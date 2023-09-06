@@ -1,0 +1,28 @@
+name: Lint Composer
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  merge_group:
+
+jobs:
+  run-linters:
+    name: Run linters
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v3
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          coverage: none
+          php-version: '8.2'
+          tools: cs2pr, phpcs
+        env:
+          phpts: ts # specify ts or nts, we use thread-safe for testing as we test in parallel
+
+      - name: Run phpcs
+        run: phpcs -q --report=checkstyle --standard=PSR12 --filter=GitModified --file-list=.phpcsinclude --tab-width=4 --parallel=10 | cs2pr
