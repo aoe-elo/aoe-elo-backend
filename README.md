@@ -21,7 +21,8 @@ Backend (here):
 ## Development
 
 You need both `node.js` (for frontend development) and `php` + `composer` (for
-backend development). The installation instructions for the frontend you will find in the [frontend repository](https://github.com/aoe-elo/aoe-elo-frontend).
+backend development). The installation instructions for the frontend you will
+find in the [frontend repository](https://github.com/aoe-elo/aoe-elo-frontend).
 
 ### Installing language tooling
 
