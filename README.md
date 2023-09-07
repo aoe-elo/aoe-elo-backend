@@ -1,24 +1,19 @@
 <p align="center"><a href="https://aoe-elo.com/" target="_blank"><img src="https://github.com/aoe-elo/aoe-elo_laravel/blob/main/public/assets/logo-light-300.png?raw=true" width="150" alt="Aoe-Elo Logo"></a></p>
 
-# AoE Tournament Elo
+# AoE Tournament Elo (Backend)
 
 🌐 Hosted here: <https://aoe-elo.com> (still the old backend)\
 🗨 Discord: <https://discord.gg/hZzheB2kVE>
 
-## Outlook (Drafting stage)
-
-<p align="center"><a href="https://media.githubusercontent.com/media/aoe-elo/aoe-elo_laravel/main/docs/design/high_fidelity/home-first_pass.png" target="_blank"><img src="https://media.githubusercontent.com/media/aoe-elo/aoe-elo_laravel/main/docs/design/high_fidelity/home-first_pass.png" width="150" alt="Aoe-Elo New Home"></a> <a href="https://media.githubusercontent.com/media/aoe-elo/aoe-elo_laravel/main/docs/design/high_fidelity/tournaments-all.png" target="_blank"><img src="https://media.githubusercontent.com/media/aoe-elo/aoe-elo_laravel/main/docs/design/high_fidelity/tournaments-all.png" width="150" alt="Aoe-Elo New Tournaments Overview"></a>
-</p>
-
 ## Tech Stack
 
-Backend:
+Backend (here):
 
 - PHP 8.2
 - SQLite database
 - Hosted on root server with Docker(?)
 
-Frontend:
+[Frontend](https://github.com/aoe-elo/aoe-elo-frontend):
 
 - Svelte(Kit)
 - Tailwind CSS
@@ -26,7 +21,7 @@ Frontend:
 ## Development
 
 You need both `node.js` (for frontend development) and `php` + `composer` (for
-backend development).
+backend development). The installation instructions for the frontend you will find in the [frontend repository](https://github.com/aoe-elo/aoe-elo-frontend).
 
 ### Installing language tooling
 
