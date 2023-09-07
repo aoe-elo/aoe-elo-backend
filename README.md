@@ -1,4 +1,4 @@
-<p align="center"><a href="https://aoe-elo.com/" target="_blank"><img src="https://github.com/aoe-elo/aoe-elo_laravel/blob/main/public/assets/logo-light-300.png?raw=true" width="150" alt="Aoe-Elo Logo"></a></p>
+<p align="center"><a href="https://aoe-elo.com/" target="_blank"><img src="https://media.githubusercontent.com/media/aoe-elo/aoe-elo-backend/main/assets/logo-light-300.png" width="150" alt="Aoe-Elo Logo"></a></p>
 
 # AoE Tournament Elo (Backend)
 
