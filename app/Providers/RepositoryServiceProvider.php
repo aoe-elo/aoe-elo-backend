@@ -14,6 +14,8 @@
 
 namespace App\Providers;
 
+use App\Repositories\ActionlogRepository;
+use App\Repositories\LegacyMatchRepository;
 use App\Repositories\TeamRepository;
 use App\Repositories\PlayerRepository;
 use Illuminate\Support\ServiceProvider;
@@ -29,9 +31,21 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
+        $this->app->bind(ActionlogRepositoryInterface::class, ActionlogRepository::class);
+        $this->app->bind(CountryRepositoryInterface::class, CountryRepository::class);
+        $this->app->bind(LocationRepositoryInterface::class, LocationRepository::class);
+        $this->app->bind(MetadataRepositoryInterface::class, MetadataRepository::class);
         $this->app->bind(PlayerRepositoryInterface::class, PlayerRepository::class);
+        $this->app->bind(PlayerRepositoryInterface::class, ArdPlayerRepository::class);
+        $this->app->bind(ReviewRepositoryInterface::class, ReviewRepository::class);
+        $this->app->bind(SetRepositoryInterface::class, SetRepository::class);
+        $this->app->bind(SetRepositoryInterface::class, LegacyMatchRepository::class);
         $this->app->bind(TeamRepositoryInterface::class, TeamRepository::class);
+        $this->app->bind(TeamRepositoryInterface::class, ArdTeamRepository::class);
+        $this->app->bind(TeamRepositoryInterface::class, LegacyTeamRepository::class);
         $this->app->bind(TournamentRepositoryInterface::class, TournamentRepository::class);
+        $this->app->bind(TournamentRepositoryInterface::class, LegacyTournamentRepository::class);
+        $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
     }
 
     /**
