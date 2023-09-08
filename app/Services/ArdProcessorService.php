@@ -33,7 +33,6 @@ class ArdProcessorService implements DataProcessingInterface
     private Collection $team_data;
     private PlayerRepositoryInterface $player_repository;
     private TeamRepositoryInterface $team_repository;
-
     private CountryRepositoryInterface $country_repository;
 
     public function __construct(PlayerRepositoryInterface $player_repository, TeamRepositoryInterface $team_repository, CountryRepositoryInterface $country_repository)

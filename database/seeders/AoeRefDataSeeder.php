@@ -39,7 +39,6 @@ class AoeRefDataSeeder extends Seeder
      */
     public function run(): void
     {
-        $data_processor = new ArdProcessorService(new ArdPlayerRepository(), new ArdTeamRepository(), new CountryRepository());
-        $data_processor->initialImport();
+        app()->make(ArdProcessorService::class)->initialImport();
     }
 }
