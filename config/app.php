@@ -191,6 +191,7 @@ return [
              * Other Service Providers...
              */
         App\Providers\RepositoryServiceProvider::class,
+        App\Providers\RequestServiceProvider::class,
     ])->toArray(),
 
     /*

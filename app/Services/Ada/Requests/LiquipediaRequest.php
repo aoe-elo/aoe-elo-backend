@@ -15,16 +15,18 @@
 namespace App\Services\Ada\Requests;
 
 use Illuminate\Support\Facades\Http;
+use Liquipedia\Client\Configuration;
+use Liquipedia\Client\Api\V3Api;
 
 class LiquipediaRequest
 {
-    private $api_key = env('LP_API_KEY', null);
-
-    public $base_url = 'https://api.liquipedia.net/api/';
+    private $api_config = Configuration::getDefaultConfiguration()->setApiKey('authorization', 'Apikey ' . env('LP_API_KEY', null));
 
     public $endpoint_lookup = [
         'players' => 'v3/player',
     ];
+
+    private $client = null;
 
     public $user_agent = 'AoE-Elo.com Crawler (info@aoe-elo.com)';
     public $wait_secs = 30;
@@ -61,6 +63,13 @@ class LiquipediaRequest
                 'Is player::true'
             ];
         }
+
+        $this->client = new V3Api(
+            // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+            // This is optional, `GuzzleHttp\Client` will be used as default.
+            // client: new GuzzleHttp\Client(),
+            config: $this->api_config
+        );
     }
 
     public function fetch()

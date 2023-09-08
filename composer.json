@@ -13,15 +13,22 @@
         "api"
     ],
     "license": "AGPL-3.0-or-later",
+    "repositories": [
+        {
+            "type": "path",
+            "url": "./dependencies/liquipedia_client_php/"
+        }
+    ],
     "require": {
         "php": "^8.2",
         "azjezz/psl": "^2.7",
         "guzzlehttp/guzzle": "^7.7",
-        "laravel/socialite": "^5.8",
-        "nette/utils": "^4.0",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.2",
+        "laravel/socialite": "^5.8",
         "laravel/tinker": "^2.8",
+        "liquipedia/api-client": "@dev",
+        "nette/utils": "^4.0",
         "socialiteproviders/discord": "^4.2",
         "socialiteproviders/github": "^4.1",
         "socialiteproviders/steam": "^4.2",
