@@ -12,13 +12,20 @@
  * file that was distributed with this source code.
  */
 
-namespace App\Services\Ada;
+namespace App\Services\Ada\Requests;
 
-use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Http;
 
 class LiquipediaRequest
 {
-    public $url = 'https://liquipedia.net/ageofempires/api.php';
+    private $api_key = env('LP_API_KEY', null);
+
+    public $base_url = 'https://api.liquipedia.net/api/';
+
+    public $endpoint_lookup = [
+        'players' => 'v3/player',
+    ];
+
     public $user_agent = 'AoE-Elo.com Crawler (info@aoe-elo.com)';
     public $wait_secs = 30;
     public $page_size = 200;
@@ -59,26 +66,25 @@ class LiquipediaRequest
     public function fetch()
     {
         $offset = 0;
-        $client = new Client();
 
         while (true) {
             echo "querying liquipedia at offset $offset\n";
 
-            $resp = $client->get($this->url, [
-                'query' => [
-                    'action' => 'askargs',
-                    'format' => 'json',
-                    'conditions' => implode('|', $this->conditions),
-                    'printouts' => implode('|', $this->properties),
-                    'parameters' => implode('&', ["offset=$offset", "limit={$this->page_size}"])
-                ],
-                'headers' => [
-                    'User-Agent' => $this->user_agent
-                ]
-            ])->getBody()->getContents();
+            $resp = Http::withToken('Apikey ' . $this->api_key)
+                ->withHeader('User-Agent', $this->user_agent)
+                ->get($this->base_url, [
+                    'wiki' => 'ageofempires',
+                    'query' => [
+                        'action' => 'askargs',
+                        'format' => 'json',
+                        'conditions' => implode('|', $this->conditions),
+                        'printouts' => implode('|', $this->properties),
+                        'parameters' => implode('&', ["offset=$offset", "limit={$this->page_size}"])
+                    ],
+                ])->object();
 
             if ($this->debug) {
-                echo 'Request url: ' . $this->url . '?' . http_build_query([
+                echo 'Request url: ' . $this->base_url . '?' . http_build_query([
                     'action' => 'askargs',
                     'format' => 'json',
                     'conditions' => implode('|', $this->conditions),

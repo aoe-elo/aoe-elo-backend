@@ -12,10 +12,10 @@
  * file that was distributed with this source code.
  */
 
-namespace App\Services\Ada;
+namespace App\Services\Ada\Requests;
 
-use GuzzleHttp\Client;
 use Symfony\Component\Yaml\Yaml;
+use Illuminate\Support\Facades\Http;
 
 class AoeRefRequest
 {
@@ -24,15 +24,8 @@ class AoeRefRequest
 
     public function fetch(): array
     {
-        $client = new Client();
-        $players_response = $client->get($this->url_players);
-        $teams_response = $client->get($this->url_teams);
-
-        $players_yaml = $players_response->getBody()->getContents();
-        $teams_json = $teams_response->getBody()->getContents();
-
-        $players = Yaml::parse($players_yaml);
-        $teams = json_decode($teams_json, true);
+        $players = Yaml::parse(Http::get($this->url_players)->body());
+        $teams = Http::get($this->url_teams)->object();
 
         return [
             'players' => $players,

@@ -12,21 +12,17 @@
  * file that was distributed with this source code.
  */
 
-namespace App\Services\Ada;
+namespace App\Services\Ada\Requests;
 
-use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Http;
 
 class Aoe2MapRequest
 {
     private string $url_maps = 'https://aoe2map.net/api/allmaps';
 
-    public function fetch(): array
+    public function fetch(): object
     {
-        $client = new Client();
-        $maps_response = $client->get($this->url_maps);
-        $maps_json = $maps_response->getBody()->getContents();
-
-        $maps = json_decode($maps_json, true);
+        $maps = Http::get($this->url_maps)->object();
 
         return $maps;
     }

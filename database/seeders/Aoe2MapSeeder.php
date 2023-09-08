@@ -25,7 +25,7 @@ use App\Repositories\CountryRepository;
 use App\Repositories\LocationRepository;
 use App\Repositories\MetadataRepository;
 use App\Repositories\UserRepository;
-use App\Services\Ada\Aoe2MapRequest;
+use App\Services\Ada\Requests\Aoe2MapRequest;
 use App\Services\Ada\AoeRefRequest;
 use App\Services\LookupService;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;

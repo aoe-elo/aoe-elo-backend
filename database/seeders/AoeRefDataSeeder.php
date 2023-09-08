@@ -21,7 +21,7 @@ use App\Repositories\ArdTeamRepository;
 use App\Repositories\CountryRepository;
 use App\Repositories\MetadataRepository;
 use App\Repositories\UserRepository;
-use App\Services\Ada\AoeRefRequest;
+use App\Services\Ada\Requests\AoeRefRequest;
 use App\Services\LookupService;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
