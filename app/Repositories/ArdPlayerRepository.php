@@ -27,6 +27,10 @@ class ArdPlayerRepository implements PlayerRepositoryInterface
         $this->lookupService = new LookupService();
     }
 
+    public function getAllPlayersPaginated()
+    {
+    }
+
     public function getAllPlayers()
     {
         return ArdPlayer::all(['*']);

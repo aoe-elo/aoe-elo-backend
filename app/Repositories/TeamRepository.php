@@ -33,9 +33,14 @@ class TeamRepository implements TeamRepositoryInterface
         return Team::all(['*']);
     }
 
+    public function getAllTeamsPaginated()
+    {
+        return Team::paginate();
+    }
+
     public function getTeamById($teamId)
     {
-        return Team::findOrFail($teamId);
+        return Team::with(['country', 'players', 'achievements', 'tournament_results', 'set_items'])->findOrFail($teamId, ['*']);
     }
 
     public function deleteTeam($teamId, int $user_id, string $actionlog_summary)

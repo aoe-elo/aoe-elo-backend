@@ -18,6 +18,8 @@ interface TeamRepositoryInterface
 {
     public function getAllTeams();
 
+    public function getAllTeamsPaginated();
+
     public function getTeamById($teamId);
 
     public function deleteTeam($teamId, int $user_id, string $actionlog_summary);

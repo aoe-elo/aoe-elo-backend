@@ -18,6 +18,8 @@ interface TournamentRepositoryInterface
 {
     public function getAllTournaments();
 
+    public function getAllTournamentsPaginated();
+
     public function getTournamentById($tournamentId);
 
     public function deleteTournament($tournamentId, int $user_id, string $actionlog_summary);

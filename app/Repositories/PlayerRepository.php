@@ -28,6 +28,11 @@ class PlayerRepository implements PlayerRepositoryInterface
         $this->lookupService = new LookupService();
     }
 
+    public function getAllPlayersPaginated()
+    {
+        return Player::paginate();
+    }
+
     public function getAllPlayers()
     {
         return Player::all(['*']);
@@ -35,7 +40,7 @@ class PlayerRepository implements PlayerRepositoryInterface
 
     public function getPlayerById($playerId)
     {
-        return Player::findOrFail($playerId);
+        return Player::with(['metadata', 'teams', 'tournament_results', 'set_items', 'country'])->findOrFail($playerId, ['*']);
     }
 
     public function deletePlayer($playerId, int $user_id, string $actionlog_summary)

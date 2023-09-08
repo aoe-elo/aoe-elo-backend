@@ -24,6 +24,10 @@ class LegacyTeamRepository implements TeamRepositoryInterface
         return LegacyTeam::all(['*']);
     }
 
+    public function getAllTeamsPaginated()
+    {
+    }
+
     public function getTeamById($teamId)
     {
         return LegacyTeam::findOrFail($teamId);

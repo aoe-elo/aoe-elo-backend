@@ -24,6 +24,10 @@ class LegacyTournamentRepository implements TournamentRepositoryInterface
         return LegacyTournament::all(['*']);
     }
 
+    public function getAllTournamentsPaginated()
+    {
+    }
+
     public function getTournamentById($tournamentId)
     {
         return LegacyTournament::findOrFail($tournamentId);

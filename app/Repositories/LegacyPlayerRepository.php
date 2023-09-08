@@ -24,6 +24,10 @@ class LegacyPlayerRepository implements PlayerRepositoryInterface
         return LegacyPlayer::all(['*']);
     }
 
+    public function getAllPlayersPaginated()
+    {
+    }
+
     public function getAllPlayersCursorWithTeamAndMigration()
     {
         return LegacyPlayer::with(['team', 'migration'])->cursor();

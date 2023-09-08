@@ -16,17 +16,25 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\TournamentResource;
+use App\Interfaces\TournamentRepositoryInterface;
 use App\Models\Tournament;
 use Illuminate\Http\Request;
 
 class TournamentController extends Controller
 {
+    private TournamentRepositoryInterface $tournamentRepository;
+
+    public function __construct(TournamentRepositoryInterface $tournamentRepository)
+    {
+        $this->tournamentRepository = $tournamentRepository;
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return TournamentResource::collection(Tournament::paginate());
+        return TournamentResource::collection($this->tournamentRepository->getAllTournamentsPaginated());
     }
 
     /**
@@ -34,6 +42,6 @@ class TournamentController extends Controller
      */
     public function show(string $id)
     {
-        return new TournamentResource(Tournament::with(['metadata', 'atp_category', 'results'])->findOrFail($id, ['*']));
+        return new TournamentResource($this->tournamentRepository->getTournamentById($id));
     }
 }

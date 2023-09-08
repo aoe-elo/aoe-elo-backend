@@ -18,6 +18,8 @@ interface PlayerRepositoryInterface
 {
     public function getAllPlayers();
 
+    public function getAllPlayersPaginated();
+
     public function getPlayerById($playerId);
 
     public function deletePlayer($playerId, int $user_id, string $actionlog_summary);

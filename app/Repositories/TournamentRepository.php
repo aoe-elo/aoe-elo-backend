@@ -33,9 +33,14 @@ class TournamentRepository implements TournamentRepositoryInterface
         return Tournament::all(['*']);
     }
 
+    public function getAllTournamentsPaginated()
+    {
+        return Tournament::paginate();
+    }
+
     public function getTournamentById($tournamentId)
     {
-        return Tournament::findOrFail($tournamentId);
+        return Tournament::with(['metadata', 'atp_category', 'results'])->findOrFail($tournamentId, ['*']);
     }
 
     public function importTournament(array $tournamentDetails, int $create_user_id, string $create_actionlog_summary, DateTime $create_time, int $update_user_id, string $update_actionlog_summary, DateTime $update_time)

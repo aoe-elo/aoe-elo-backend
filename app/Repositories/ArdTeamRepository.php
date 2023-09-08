@@ -32,6 +32,10 @@ class ArdTeamRepository implements TeamRepositoryInterface
         return ArdTeam::all(['*']);
     }
 
+    public function getAllTeamsPaginated()
+    {
+    }
+
     public function getTeamById($teamId)
     {
         return ArdTeam::findOrFail($teamId);

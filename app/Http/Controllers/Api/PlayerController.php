@@ -17,17 +17,25 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\PlayerResource;
 use App\Http\Resources\PlayerCollection;
+use App\Interfaces\PlayerRepositoryInterface;
 use App\Models\Player;
 use Illuminate\Http\Request;
 
 class PlayerController extends Controller
 {
+    private PlayerRepositoryInterface $playerRepository;
+
+    public function __construct(PlayerRepositoryInterface $playerRepository)
+    {
+        $this->playerRepository = $playerRepository;
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return new PlayerCollection(Player::paginate());
+        return new PlayerCollection($this->playerRepository->getAllPlayersPaginated());
     }
 
     /**
@@ -35,6 +43,6 @@ class PlayerController extends Controller
      */
     public function show(string $id)
     {
-        return new PlayerResource(Player::with(['metadata', 'teams', 'tournament_results', 'set_items', 'country'])->findOrFail($id, ['*']));
+        return new PlayerResource($this->playerRepository->getPlayerById($id));
     }
 }

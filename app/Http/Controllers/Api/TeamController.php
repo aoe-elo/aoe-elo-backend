@@ -16,17 +16,25 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\TeamResource;
+use App\Interfaces\TeamRepositoryInterface;
 use App\Models\Team;
 use Illuminate\Http\Request;
 
 class TeamController extends Controller
 {
+    private TeamRepositoryInterface $teamRepository;
+
+    public function __construct(TeamRepositoryInterface $teamRepository)
+    {
+        $this->teamRepository = $teamRepository;
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return TeamResource::collection(Team::paginate());
+        return TeamResource::collection($this->teamRepository->getAllTeamsPaginated());
     }
 
     /**
@@ -34,6 +42,6 @@ class TeamController extends Controller
      */
     public function show(string $id)
     {
-        return new TeamResource(Team::with(['country', 'players', 'achievements', 'tournament_results', 'set_items'])->findOrFail($id, ['*']));
+        return new TeamResource($this->teamRepository->getTeamById($id));
     }
 }
