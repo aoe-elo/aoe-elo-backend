@@ -24,6 +24,11 @@ class LegacyMatchRepository implements SetRepositoryInterface
         return LegacyMatch1v1::all(['*']);
     }
 
+    public function getAllSetsPaginated()
+    {
+        throw new \Exception('Not implemented');
+    }
+
     public function getSetById($setId)
     {
         return LegacyMatch1v1::findOrFail($setId);
@@ -36,13 +41,16 @@ class LegacyMatchRepository implements SetRepositoryInterface
 
     public function deleteSet($setId, int $user_id, string $actionlog_summary)
     {
+        throw new \Exception('Not implemented');
     }
 
     public function createSet(array $setDetails, int $user_id, string $actionlog_summary)
     {
+        throw new \Exception('Not implemented');
     }
 
     public function updateSet($setId, array $newSetDetails, int $user_id, string $actionlog_summary)
     {
+        throw new \Exception('Not implemented');
     }
 }

@@ -21,7 +21,7 @@ use DateTime;
 
 class LocationRepository implements LocationRepositoryInterface
 {
-    private $lookupService = null;
+    private LookupService $lookupService;
 
     public function __construct()
     {

@@ -18,6 +18,8 @@ interface SetRepositoryInterface
 {
     public function getAllSets();
 
+    public function getAllSetsPaginated();
+
     public function getSetById($setId);
 
     public function deleteSet($setId, int $user_id, string $actionlog_summary);

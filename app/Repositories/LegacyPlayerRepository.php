@@ -26,6 +26,7 @@ class LegacyPlayerRepository implements PlayerRepositoryInterface
 
     public function getAllPlayersPaginated()
     {
+        throw new \Exception('Not implemented');
     }
 
     public function getAllPlayersCursorWithTeamAndMigration()
@@ -40,13 +41,16 @@ class LegacyPlayerRepository implements PlayerRepositoryInterface
 
     public function deletePlayer($playerId, int $user_id, string $actionlog_summary)
     {
+        throw new \Exception('Not implemented');
     }
 
     public function createPlayer(array $playerDetails, int $user_id, string $actionlog_summary)
     {
+        throw new \Exception('Not implemented');
     }
 
     public function updatePlayer($playerId, array $newPlayerDetails, int $user_id, string $actionlog_summary)
     {
+        throw new \Exception('Not implemented');
     }
 }

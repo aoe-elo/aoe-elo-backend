@@ -26,6 +26,7 @@ class LegacyTeamRepository implements TeamRepositoryInterface
 
     public function getAllTeamsPaginated()
     {
+        throw new \Exception('Not implemented');
     }
 
     public function getTeamById($teamId)
@@ -35,13 +36,16 @@ class LegacyTeamRepository implements TeamRepositoryInterface
 
     public function deleteTeam($teamId)
     {
+        throw new \Exception('Not implemented');
     }
 
     public function createTeam(array $teamDetails)
     {
+        throw new \Exception('Not implemented');
     }
 
     public function updateTeam($teamId, array $newTeamDetails)
     {
+        throw new \Exception('Not implemented');
     }
 }

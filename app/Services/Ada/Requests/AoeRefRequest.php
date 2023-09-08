@@ -25,7 +25,7 @@ class AoeRefRequest
     public function fetch(): array
     {
         $players = Yaml::parse(Http::get($this->url_players)->body());
-        $teams = Http::get($this->url_teams)->object();
+        $teams = Http::get($this->url_teams)->json();
 
         return [
             'players' => $players,

@@ -24,12 +24,7 @@ use Nette\Utils\Arrays;
 
 class MetadataRepository implements MetadataRepositoryInterface
 {
-    private $lookupService = null;
-
-    public function __construct()
-    {
-        $this->lookupService = new LookupService();
-    }
+    private LookupService $lookupService = new LookupService();
 
     public function getAllMetadataEntries()
     {

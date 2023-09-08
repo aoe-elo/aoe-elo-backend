@@ -14,12 +14,13 @@
 
 namespace App\Repositories;
 
-use App\Models\Player;
 use App\Interfaces\PlayerRepositoryInterface;
+use App\Models\Stage;
+use App\Interfaces\StageRepositoryInterface;
 use App\Services\LookupService;
 use DateTime;
 
-class PlayerRepository implements PlayerRepositoryInterface
+class StageRepository implements StageRepositoryInterface
 {
     private LookupService $lookupService;
 
@@ -28,78 +29,83 @@ class PlayerRepository implements PlayerRepositoryInterface
         $this->lookupService = new LookupService();
     }
 
-    public function getAllPlayersPaginated()
+    public function getAllStages()
     {
-        return Player::paginate();
+        return Stage::all(['*']);
     }
 
-    public function getAllPlayers()
+    public function getAllStagesPaginated()
     {
-        return Player::all(['*']);
+        return Stage::paginate();
     }
 
-    public function getPlayerById($playerId)
+    public function getStageById($stageId)
     {
-        return Player::with(['metadata', 'teams', 'tournament_results', 'set_items', 'country'])->findOrFail($playerId, ['*']);
+        return Stage::findOrFail($stageId);
     }
 
-    public function deletePlayer($playerId, int $user_id, string $actionlog_summary)
+    public function deleteStage($stageId, int $user_id, string $actionlog_summary)
     {
-        $player = Player::findOrFail($playerId);
+        $stage = Stage::findOrFail($stageId);
 
-        $player->action_logs()->create([
+        $stage->action_logs()->create([
             'user_id' => $user_id,
             'action_id' => $this->lookupService->getActionId('delete'),
             'summary' => $actionlog_summary,
         ]);
 
-        Player::destroy($playerId);
+        Stage::destroy($stageId);
     }
 
-    public function createPlayer(array $playerDetails, int $user_id, string $actionlog_summary)
+    public function createStage(array $stageDetails, int $user_id, string $actionlog_summary)
     {
-        $player = Player::create($playerDetails);
+        $stage = Stage::create($stageDetails);
 
-        $player->action_logs()->create([
+        $stage->action_logs()->create([
             'user_id' => $user_id,
             'action_id' => $this->lookupService->getActionId('create'),
             'summary' => $actionlog_summary,
         ]);
 
-        return $player;
+        return $stage;
     }
 
-    public function importPlayer(array $playerDetails, int $create_user_id, string $create_actionlog_summary, DateTime $create_time, int $update_user_id, string $update_actionlog_summary, DateTime $update_time)
+    public function getAllStagesCursorWithRelations()
     {
-        $player = Player::create($playerDetails);
+        return Stage::orderBy('played_at', 'asc')->with(['action_logs', 'tournaments', 'templates', 'reviews'])->cursor();
+    }
 
-        $player->action_logs()->create([
+    public function importStage(array $stageDetails, int $create_user_id, string $create_actionlog_summary, DateTime $create_time, int $update_user_id, string $update_actionlog_summary, DateTime $update_time)
+    {
+        $stage = Stage::create($stageDetails);
+
+        $stage->action_logs()->create([
             'user_id' => $create_user_id,
             'action_id' => $this->lookupService->getActionId('create'),
             'summary' => $create_actionlog_summary,
             'created_at' => $create_time,
         ]);
 
-        $player->action_logs()->create([
+        $stage->action_logs()->create([
             'user_id' => $update_user_id,
             'action_id' => $this->lookupService->getActionId('update'),
             'summary' => $update_actionlog_summary,
             'updated_at' => $update_time,
         ]);
 
-        return $player;
+        return $stage;
     }
 
-    public function updatePlayer($playerId, array $newPlayerDetails, int $user_id, string $actionlog_summary)
+    public function updateStage($stageId, array $newStageDetails, int $user_id, string $actionlog_summary)
     {
-        $player = Player::whereId($playerId)->update($newPlayerDetails);
+        $stage = Stage::whereId($stageId)->update($newStageDetails);
 
-        $player->action_logs()->create([
+        $stage->action_logs()->create([
             'user_id' => $user_id,
             'action_id' => $this->lookupService->getActionId('update'),
             'summary' => $actionlog_summary,
         ]);
 
-        return $player;
+        return $stage;
     }
 }

@@ -29,6 +29,7 @@ class ArdPlayerRepository implements PlayerRepositoryInterface
 
     public function getAllPlayersPaginated()
     {
+        throw new \Exception('Not implemented');
     }
 
     public function getAllPlayers()

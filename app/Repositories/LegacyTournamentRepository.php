@@ -26,6 +26,7 @@ class LegacyTournamentRepository implements TournamentRepositoryInterface
 
     public function getAllTournamentsPaginated()
     {
+        throw new \Exception('Not implemented');
     }
 
     public function getTournamentById($tournamentId)
@@ -40,13 +41,16 @@ class LegacyTournamentRepository implements TournamentRepositoryInterface
 
     public function deleteTournament($tournamentId, int $user_id, string $actionlog_summary)
     {
+        throw new \Exception('Not implemented');
     }
 
     public function createTournament(array $tournamentDetails, int $user_id, string $actionlog_summary)
     {
+        throw new \Exception('Not implemented');
     }
 
     public function updateTournament($tournamentId, array $newTournamentDetails, int $user_id, string $actionlog_summary)
     {
+        throw new \Exception('Not implemented');
     }
 }

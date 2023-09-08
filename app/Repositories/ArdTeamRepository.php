@@ -34,6 +34,7 @@ class ArdTeamRepository implements TeamRepositoryInterface
 
     public function getAllTeamsPaginated()
     {
+        throw new \Exception('Not implemented');
     }
 
     public function getTeamById($teamId)

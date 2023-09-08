@@ -192,6 +192,7 @@ return [
              */
         App\Providers\RepositoryServiceProvider::class,
         App\Providers\RequestServiceProvider::class,
+        App\Providers\DataProcessingServiceProvider::class,
     ])->toArray(),
 
     /*

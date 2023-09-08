@@ -21,7 +21,7 @@ use DateTime;
 
 class TournamentRepository implements TournamentRepositoryInterface
 {
-    private $lookupService = null;
+    private LookupService $lookupService;
 
     public function __construct()
     {

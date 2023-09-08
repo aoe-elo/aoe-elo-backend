@@ -21,7 +21,7 @@ use DateTime;
 
 class TeamRepository implements TeamRepositoryInterface
 {
-    private $lookupService = null;
+    private LookupService $lookupService;
 
     public function __construct()
     {

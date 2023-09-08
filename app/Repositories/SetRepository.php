@@ -14,6 +14,7 @@
 
 namespace App\Repositories;
 
+use App\Interfaces\PlayerRepositoryInterface;
 use App\Models\Set;
 use App\Interfaces\SetRepositoryInterface;
 use App\Services\LookupService;
@@ -21,7 +22,7 @@ use DateTime;
 
 class SetRepository implements SetRepositoryInterface
 {
-    private $lookupService = null;
+    private LookupService $lookupService;
 
     public function __construct()
     {
@@ -31,6 +32,11 @@ class SetRepository implements SetRepositoryInterface
     public function getAllSets()
     {
         return Set::all(['*']);
+    }
+
+    public function getAllSetsPaginated()
+    {
+        return Set::paginate();
     }
 
     public function getSetById($setId)

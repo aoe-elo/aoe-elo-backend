@@ -20,12 +20,7 @@ use App\Services\LookupService;
 
 class ReviewRepository implements ReviewRepositoryInterface
 {
-    private $lookupService = null;
-
-    public function __construct()
-    {
-        $this->lookupService = new LookupService();
-    }
+    private LookupService $lookupService = new LookupService();
 
     public function getAllReviewEntries()
     {
