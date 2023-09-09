@@ -2,5 +2,12 @@
     "$schema": "https://docs.renovatebot.com/renovate-schema.json",
     "extends": [
         "config:base"
+    ],
+    "labels": ["A-dependencies"],
+    "packageRules": [
+        {
+          "matchPackagePatterns": ["composer"],
+          "labels": ["T-composer"]
+        },
     ]
 }
