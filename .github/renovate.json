@@ -8,6 +8,10 @@
         {
           "matchPackagePatterns": ["composer"],
           "labels": ["T-composer"]
+        },
+        {
+          "matchPackagePatterns": ["github-actions"],
+          "labels": ["A-ci"]
         }
     ]
 }
