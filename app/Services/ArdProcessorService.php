@@ -47,6 +47,23 @@ class ArdProcessorService implements DataProcessingInterface
     {
     }
 
+    public function collectData(): void
+    {
+    }
+
+    public function storeData(): void
+    {
+    }
+
+    public function diffData(): void
+    {
+    }
+
+    public function transformData(): void
+    {
+        // https://laravel.com/docs/10.x/collections#method-diffassoc
+    }
+
     public function initialImport(): void
     {
         $data = (new AoeRefRequest())->fetch(); // TODO! Error handling
@@ -159,18 +176,5 @@ class ArdProcessorService implements DataProcessingInterface
         }
 
         echo "\rInsertion of players complete.\n";
-    }
-
-    public function collectData(): void
-    {
-    }
-
-    public function storeData(): void
-    {
-    }
-
-    public function transformData(): void
-    {
-        // https://laravel.com/docs/10.x/collections#method-diffassoc
     }
 }

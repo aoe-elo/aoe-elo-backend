@@ -28,5 +28,7 @@ interface DataProcessingInterface
 
     public function storeData(): void;
 
+    public function diffData(): void;
+
     public function transformData(): void;
 }

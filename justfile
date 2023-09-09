@@ -90,11 +90,11 @@ test_reviews:
 
 # Clones the database to a backup file *ARG
 dbclone *ARG:
-        sqlite3 $DB_DATABASE ".timeout 1000" ".backup './database/backups/aoe-elo-dev.sqlite.{{ARG}}.bkp'"
+        sqlite3 {{db}} ".timeout 1000" ".backup './database/backups/aoe-elo-dev.sqlite.{{ARG}}.bkp'"
 
 # Restores the database from a backup file *ARG
 dbrestore *ARG:
-        sqlite3 $DB_DATABASE ".timeout 1000" ".restore './database/backups/aoe-elo-dev.sqlite.{{ARG}}.bkp'"
+        sqlite3 {{db}} ".timeout 1000" ".restore './database/backups/aoe-elo-dev.sqlite.{{ARG}}.bkp'"
 
 # Backs up the database using the SQLite backup command
 dbbackup:
