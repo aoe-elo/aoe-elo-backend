@@ -8,6 +8,6 @@
         {
           "matchPackagePatterns": ["composer"],
           "labels": ["T-composer"]
-        },
+        }
     ]
 }
