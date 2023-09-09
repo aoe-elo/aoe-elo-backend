@@ -3,15 +3,25 @@
     "extends": [
         "config:base"
     ],
-    "labels": ["A-dependencies"],
+    "labels": [
+        "A-dependencies"
+    ],
     "packageRules": [
         {
-          "matchPackagePatterns": ["composer"],
-          "labels": ["T-composer"]
+            "matchPackagePatterns": [
+                "composer"
+            ],
+            "labels": [
+                "T-composer"
+            ]
         },
         {
-          "matchPackagePatterns": ["github-actions"],
-          "labels": ["A-ci"]
+            "matchPackagePatterns": [
+                "github-actions"
+            ],
+            "labels": [
+                "A-ci"
+            ]
         }
     ]
 }
