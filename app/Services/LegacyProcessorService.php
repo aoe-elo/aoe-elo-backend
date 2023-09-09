@@ -129,7 +129,7 @@ class LegacyProcessorService implements DataProcessingInterface
 
     public function migrateSets(): void
     {
-        $this->total = LegacyMatch1v1::where('id', '>', 0)->count();
+        $this->total = $this->legacy_match_repository->getAllSetsCount();
 
         $this->done = 1;
         foreach ($this->legacy_match_repository->getAllMatchesCursorWithMigration() as $legacy_match) {
@@ -140,8 +140,6 @@ class LegacyProcessorService implements DataProcessingInterface
             if ($set_state == false || $set_state == null) {
                 $datetime = DateTimeImmutable::createFromFormat('Y-m-d|+', $legacy_match->date) ?? null;
 
-                // Debugging date parsing
-                // dd(DateTimeImmutable::getLastErrors());
                 $played_at = null;
                 if ($datetime != false) {
                     $played_at = $datetime;
@@ -209,7 +207,7 @@ class LegacyProcessorService implements DataProcessingInterface
 
     public function migrateTournaments(): void
     {
-        $this->total = LegacyTournament::where('id', '>', 0)->count();
+        $this->total = $this->legacy_tournament_repository->getAllTournamentsCount();
 
         $this->done = 1;
         foreach ($this->legacy_tournament_repository->getAllTournamentsCursorWithMigration() as $legacy_tournament) {
@@ -305,7 +303,7 @@ class LegacyProcessorService implements DataProcessingInterface
 
     public function migratePlayersAndTeams(): void
     {
-        $this->total = LegacyPlayer::where('id', '>', 0)->count();
+        $this->total = $this->legacy_player_repository->getAllPlayersCount();
 
         $this->done = 1;
         foreach ($this->legacy_player_repository->getAllPlayersCursorWithTeamAndMigration() as $legacy_player) {

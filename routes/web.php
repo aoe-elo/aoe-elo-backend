@@ -12,13 +12,15 @@
  * file that was distributed with this source code.
  */
 
-use App\Http\Controllers\Web\PlayerController;
-use App\Http\Controllers\Web\TeamController;
-use App\Http\Controllers\Web\TournamentController;
+use App\Http\Controllers\Web\PlayerWebController;
+use App\Http\Controllers\Web\TeamWebController;
+use App\Http\Controllers\Web\TournamentWebController;
+use App\Http\Controllers\Web\ReviewWebController;
+use App\Http\Controllers\Web\NewsWebController;
+use App\Http\Controllers\Web\SetWebController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
-use App\Http\Controllers\Web\HomeController;
-use App\Http\Controllers\Web\PageController;
+use App\Http\Controllers\Web\HomeWebController;
 use App\Http\Controllers\Web\ProfileController;
 
 /*
@@ -52,13 +54,15 @@ Route::post('/tokens/create', function (Request $request) {
 Route::get('/debug/{id?}', function (string $id = null) {
 });
 
-Route::get('/', HomeController::class)->name('home');
-Route::get('/about', [PageController::class, 'about'])->name('about');
+Route::get('/', HomeWebController::class)->name('home');
 
-Route::resources([
-    '/players' => PlayerController::class,
-    '/teams' => TeamController::class,
-    '/tournaments' => TournamentController::class,
+Route::apiResources([
+    '/players' => PlayerWebController::class,
+    '/teams' => TeamWebController::class,
+    '/tournaments' => TournamentWebController::class,
+    '/sets' => SetWebController::class,
+    '/reviews' => ReviewWebController::class,
+    '/news' => NewsWebController::class,
 ], ['as' => 'web']);
 
 // Dashboard

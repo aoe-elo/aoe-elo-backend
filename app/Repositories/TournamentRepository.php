@@ -33,6 +33,11 @@ class TournamentRepository implements TournamentRepositoryInterface
         return Tournament::all(['*']);
     }
 
+    public function getAllTournamentsCount(): int
+    {
+        return Tournament::count();
+    }
+
     public function getAllTournamentsPaginated()
     {
         return Tournament::paginate();

@@ -24,6 +24,11 @@ class LegacyPlayerRepository implements PlayerRepositoryInterface
         return LegacyPlayer::all(['*']);
     }
 
+    public function getAllPlayersCount(): int
+    {
+        return LegacyPlayer::count();
+    }
+
     public function getAllPlayersPaginated()
     {
         throw new \Exception('Not implemented');

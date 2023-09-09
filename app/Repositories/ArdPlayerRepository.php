@@ -27,6 +27,11 @@ class ArdPlayerRepository implements PlayerRepositoryInterface
         $this->lookupService = new LookupService();
     }
 
+    public function getAllPlayersCount(): int
+    {
+        return ArdPlayer::count();
+    }
+
     public function getAllPlayersPaginated()
     {
         throw new \Exception('Not implemented');

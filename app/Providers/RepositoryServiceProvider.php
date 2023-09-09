@@ -14,6 +14,7 @@
 
 namespace App\Providers;
 
+use App\Http\Controllers\Api\PlayerApiController;
 use App\Interfaces\ActionlogRepositoryInterface;
 use App\Interfaces\CountryRepositoryInterface;
 use App\Interfaces\LocationRepositoryInterface;
@@ -60,8 +61,6 @@ class RepositoryServiceProvider extends ServiceProvider
         TeamRepositoryInterface::class => TeamRepository::class,
         TournamentRepositoryInterface::class => TournamentRepository::class,
         UserRepositoryInterface::class => UserRepository::class,
-        TeamRepositoryInterface::class => ArdTeamRepository::class,
-        PlayerRepositoryInterface::class => ArdPlayerRepository::class,
     ];
 
     /**
@@ -76,6 +75,38 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->when(ArdProcessorService::class)
             ->needs(PlayerRepositoryInterface::class)
             ->give(ArdPlayerRepository::class);
+
+        $this->app->when(PlayerApiController::class)
+            ->needs(PlayerRepositoryInterface::class)
+            ->give(PlayerRepository::class);
+
+        $this->app->when(PlayerWebController::class)
+            ->needs(PlayerRepositoryInterface::class)
+            ->give(PlayerRepository::class);
+
+        $this->app->when(TeamApiController::class)
+            ->needs(TeamRepositoryInterface::class)
+            ->give(TeamRepository::class);
+
+        $this->app->when(TeamWebController::class)
+            ->needs(TeamRepositoryInterface::class)
+            ->give(TeamRepository::class);
+
+        $this->app->when(TournamentApiController::class)
+            ->needs(TournamentRepositoryInterface::class)
+            ->give(TournamentRepository::class);
+
+        $this->app->when(TournamentWebController::class)
+            ->needs(TournamentRepositoryInterface::class)
+            ->give(TournamentRepository::class);
+
+        $this->app->when(SetApiController::class)
+            ->needs(SetRepositoryInterface::class)
+            ->give(SetRepository::class);
+
+        $this->app->when(SetWebController::class)
+            ->needs(SetRepositoryInterface::class)
+            ->give(SetRepository::class);
     }
 
     /**

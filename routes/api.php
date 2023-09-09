@@ -35,16 +35,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::apiResources(
     [
-        'v1/news' => \App\Http\Controllers\Api\NewsController::class,
-        'v1/players' => \App\Http\Controllers\Api\PlayerController::class,
-        'v1/sets' => \App\Http\Controllers\Api\SetController::class,
-        'v1/teams' => \App\Http\Controllers\Api\TeamController::class,
-        'v1/tournaments' => \App\Http\Controllers\Api\TournamentController::class,
-        // 'v1/leaderboards' => \App\Http\Controllers\Api\LeaderboardController::class, // TODO!: Implement
+        'v1/news' => \App\Http\Controllers\Api\NewsApiController::class,
+        'v1/players' => \App\Http\Controllers\Api\PlayerApiController::class,
+        'v1/sets' => \App\Http\Controllers\Api\SetApiController::class,
+        'v1/teams' => \App\Http\Controllers\Api\TeamApiController::class,
+        'v1/tournaments' => \App\Http\Controllers\Api\TournamentApiController::class,
+        // 'v1/leaderboards' => \App\Http\Controllers\Api\LeaderboardApiController::class, // TODO!: Implement
     ],
     ['only' => ['index', 'show'], 'as' => 'api']
 );
 
 Route::apiResources([
-    // 'v1/search' => \App\Http\Controllers\Api\SearchController::class, // TODO!: Implement
+    // 'v1/search' => \App\Http\Controllers\Api\SearchApiController::class, // TODO!: Implement
 ], ['only' => ['index'], 'as' => 'api']);

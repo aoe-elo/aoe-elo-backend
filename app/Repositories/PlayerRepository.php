@@ -28,6 +28,11 @@ class PlayerRepository implements PlayerRepositoryInterface
         $this->lookupService = new LookupService();
     }
 
+    public function getAllPlayersCount(): int
+    {
+        return Player::count();
+    }
+
     public function getAllPlayersPaginated()
     {
         return Player::paginate();

@@ -34,6 +34,11 @@ class SetRepository implements SetRepositoryInterface
         return Set::all(['*']);
     }
 
+    public function getAllSetsCount(): int
+    {
+        return Set::count();
+    }
+
     public function getAllSetsPaginated()
     {
         return Set::paginate();

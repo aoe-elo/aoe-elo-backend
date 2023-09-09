@@ -18,6 +18,8 @@ interface TournamentRepositoryInterface
 {
     public function getAllTournaments();
 
+    public function getAllTournamentsCount();
+
     public function getAllTournamentsPaginated();
 
     public function getTournamentById($tournamentId);

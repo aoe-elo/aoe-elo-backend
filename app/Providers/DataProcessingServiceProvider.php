@@ -14,10 +14,13 @@
 
 namespace App\Providers;
 
+use App\Interfaces\DataProcessingInterface;
 use Illuminate\Support\ServiceProvider;
 
 class DataProcessingServiceProvider extends ServiceProvider
 {
+    public $bindings = [];
+
     /**
      * Register services.
      */

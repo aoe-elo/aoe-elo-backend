@@ -24,6 +24,11 @@ class LegacyTournamentRepository implements TournamentRepositoryInterface
         return LegacyTournament::all(['*']);
     }
 
+    public function getAllTournamentsCount(): int
+    {
+        return LegacyTournament::count();
+    }
+
     public function getAllTournamentsPaginated()
     {
         throw new \Exception('Not implemented');

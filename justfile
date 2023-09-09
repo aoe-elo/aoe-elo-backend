@@ -30,6 +30,10 @@ btest:
 # Run all available recipes before opening a pull request
 pr: blint btest fix
 
+# Create Web/Controller for a model *MODEL with requests and pest tests
+makewebcontroller *MODEL:
+    php artisan make:controller --pest Web/{{MODEL}}Controller -m {{MODEL}} -R
+
 # Refresh the database schema and seed
 dbfreshs:
     @just dbrecreate

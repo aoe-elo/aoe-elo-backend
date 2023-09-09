@@ -24,6 +24,11 @@ class LegacyMatchRepository implements SetRepositoryInterface
         return LegacyMatch1v1::all(['*']);
     }
 
+    public function getAllSetsCount(): int
+    {
+        return LegacyMatch1v1::count();
+    }
+
     public function getAllSetsPaginated()
     {
         throw new \Exception('Not implemented');

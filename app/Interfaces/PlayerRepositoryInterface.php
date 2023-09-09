@@ -18,6 +18,8 @@ interface PlayerRepositoryInterface
 {
     public function getAllPlayers();
 
+    public function getAllPlayersCount(): int;
+
     public function getAllPlayersPaginated();
 
     public function getPlayerById($playerId);

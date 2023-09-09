@@ -18,6 +18,8 @@ interface SetRepositoryInterface
 {
     public function getAllSets();
 
+    public function getAllSetsCount(): int;
+
     public function getAllSetsPaginated();
 
     public function getSetById($setId);
