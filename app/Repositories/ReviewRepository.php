@@ -72,7 +72,7 @@ class ReviewRepository implements ReviewRepositoryInterface
         ]);
     }
 
-    public function addReviewToQueue($entity, $content, int $user_id, string $actionlog_summary, $comment = null, $status = 'pending')
+    public function addReviewToQueue($entity, $content, int $user_id, string $actionlog_summary, $comment = null, $status = 'open')
     {
         $review = $entity->reviews()->create([
             'changes' => json_encode($content),

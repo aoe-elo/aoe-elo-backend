@@ -28,7 +28,7 @@ interface ReviewRepositoryInterface
 
     public function addCommentToReviewEntry($reviewEntryId, $comment, int $user_id, string $actionlog_summary);
 
-    public function addReviewToQueue($entity, $content, int $user_id, string $actionlog_summary, $comment = null, $status = 'pending');
+    public function addReviewToQueue($entity, $content, int $user_id, string $actionlog_summary, $comment = null, $status = 'open');
 
     public function changeReviewStatus($reviewEntryId, $newStatus, int $user_id, string $actionlog_summary);
 

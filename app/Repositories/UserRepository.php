@@ -72,4 +72,21 @@ class UserRepository implements UserRepositoryInterface
     {
         return GithubUser::where('github_id', $githubId)->firstOrFail()->user;
     }
+
+    // TODO!: https://laravel.com/docs/10.x/eloquent#upserts
+    public static function createNewUserFromDiscordId()
+    {
+    }
+
+    public static function createNewUserFromGithubId()
+    {
+    }
+
+    public static function createNewUserFromTwitchId()
+    {
+    }
+
+    public static function createNewUserFromSteamId()
+    {
+    }
 }
