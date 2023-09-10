@@ -25,6 +25,7 @@ return new class () extends Migration {
         Schema::connection('sqlite')->create('news', function (Blueprint $table) {
             $table->id();
             $table->text('title');
+            $table->boolean('pinned')->default(false);
             $table->text('abstract')->nullable();
             $table->text('content');
             $table->text('description')->nullable();

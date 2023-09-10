@@ -24,6 +24,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *
  * @property int|null $id
  * @property string|null $title
+ * @property bool|null $pinned
  * @property string $abstract
  * @property string|null $content
  * @property string $description
@@ -41,8 +42,13 @@ class News extends Model
     protected $connection = 'sqlite';
     protected $table = 'news';
 
+    protected $casts = [
+        'pinned' => 'bool'
+    ];
+
     protected $fillable = [
         'title',
+        'pinned',
         'abstract',
         'content',
         'description',
