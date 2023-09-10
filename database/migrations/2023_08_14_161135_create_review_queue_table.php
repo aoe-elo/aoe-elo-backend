@@ -25,7 +25,7 @@ return new class () extends Migration {
         Schema::connection('sqlite')->create('reviews', function (Blueprint $table) {
             $table->id();
             $table->json('changes')->comment('JSON encoded content of the changes: ["column": "value", "column2": "value2"]');
-            $table->enum('status', ['approved', 'pending', 'flagged', 'wip', 'merged', 'rejected', 'closed', 'draft', 'open', 'stale'])->nullable()->default('open');
+            $table->enum('status', ['open', 'review', 'approved', 'rejected', 'merged'])->nullable()->default('open');
             $table->unsignedBigInteger('reviewable_id')->comment('the id of the model of the review item');
             $table->string('reviewable_type', 255)->comment('the model class of the review item');
             $table->timestamps();
