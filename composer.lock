@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1402d5933871c68ecd345a43bdf3310f",
+    "content-hash": "2b1dc0b6b623bccbe508d4ebda69f8e7",
     "packages": [
         {
             "name": "azjezz/psl",
@@ -2435,7 +2435,7 @@
             "dist": {
                 "type": "path",
                 "url": "./dependencies/liquipedia_client_php",
-                "reference": "a5086bd7c8e9c494fadd15adbb864b96e0401105"
+                "reference": "3bf28d179f73dac5657682c95c3ffcc9a310ad61"
             },
             "require": {
                 "ext-curl": "*",

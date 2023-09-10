@@ -19,24 +19,48 @@ use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Auth;
 
+// TODO!: https://www.cloudways.com/blog/social-login-in-laravel-using-socialite/
+
 class SocialAuthenticationController extends Controller
 {
-    public function redirectToGitHubProvider(): void
+    public function redirectToSocialProvider($socialProvider) : void
+    {
+        match ($socialProvider) {
+            'github' => $this->redirectToGitHubProvider(),
+            'discord' => $this->redirectToDiscordProvider(),
+            'steam' => $this->redirectToSteamProvider(),
+            'twitch' => $this->redirectToTwitchProvider(),
+            default => abort(404),
+        };
+    }
+
+    public function handleSocialProviderCallback($socialProvider)
+    {
+        match ($socialProvider) {
+            'github' => $this->handleGitHubProviderCallback(),
+            'discord' => $this->handleDiscordProviderCallback(),
+            'steam' => $this->handleSteamProviderCallback(),
+            'twitch' => $this->handleTwitchProviderCallback(),
+            default => abort(404),
+        };
+    }
+
+    public function redirectToGitHubProvider() : void
     {
         Socialite::driver('github')->scopes(['read:user', 'public_repo'])->redirect();
     }
 
-    public function redirectToDiscordProvider(): void
+    public function redirectToDiscordProvider() : void
     {
         Socialite::driver('discord')->scopes(['identify'])->redirect();
     }
 
-    public function redirectToSteamProvider(): void
+    public function redirectToSteamProvider() : void
     {
         Socialite::driver('steam')->redirect();
     }
 
-    public function redirectToTwitchProvider(): void
+    public function redirectToTwitchProvider() : void
     {
         Socialite::driver('twitch')->scopes(['user:read:email'])->redirect();
     }

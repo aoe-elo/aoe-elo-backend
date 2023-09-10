@@ -19,16 +19,17 @@ use Illuminate\Support\Facades\Route;
 // use App\Http\Controllers\Auth\RegisteredUserController;
 // use App\Http\Controllers\Auth\PasswordResetLinkController;
 // use App\Http\Controllers\Auth\ConfirmablePasswordController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 // use App\Http\Controllers\Auth\EmailVerificationPromptController;
 // use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Auth\SocialAuthenticationController;
 
 Route::middleware('guest')->group(function () {
-    // Route::get('register', [RegisteredUserController::class, 'create'])
-    //     ->name('register');
+    Route::get('register', [RegisteredUserController::class, 'create'])
+        ->name('register');
 
-    // Route::post('register', [RegisteredUserController::class, 'store']);
+    Route::post('register', [RegisteredUserController::class, 'store']);
 
     Route::get('login', [AuthenticatedSessionController::class, 'create'])
         ->name('login');
@@ -72,19 +73,6 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware('guest')->group(function () {
-    // Discord
-    Route::get('auth/discord', [SocialAuthenticationController::class, 'redirectToDiscordProvider']);
-    Route::get('auth/discord/callback', [SocialAuthenticationController::class, 'handleDiscordProviderCallback']);
-
-    // Twitch
-    Route::get('auth/twitch', [SocialAuthenticationController::class, 'redirectToTwitchProvider']);
-    Route::get('auth/twitch/callback', [SocialAuthenticationController::class, 'handleTwitchProviderCallback']);
-
-    // Steam
-    Route::get('auth/steam', [SocialAuthenticationController::class, 'redirectToSteamProvider']);
-    Route::get('auth/steam/callback', [SocialAuthenticationController::class, 'handleSteamProviderCallback']);
-
-    // GitHub
-    Route::get('auth/github', [SocialAuthenticationController::class, 'redirectToGitHubProvider']);
-    Route::get('auth/github/callback', [SocialAuthenticationController::class, 'handleGitHubProviderCallback']);
+    Route::get('auth/{socialProvider}', 'SocialAuthenticationController@redirectToSocialProvider')->where('socialProvider', 'github|discord|steam|twitch');
+    Route::get('auth/{socialProvider}/callback', 'SocialAuthenticationController@handleSocialProviderCallback')->where('socialProvider', 'github|discord|steam|twitch');
 });

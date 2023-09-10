@@ -33,18 +33,24 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResources(
-    [
-        'v1/news' => \App\Http\Controllers\Api\NewsApiController::class,
-        'v1/players' => \App\Http\Controllers\Api\PlayerApiController::class,
-        'v1/sets' => \App\Http\Controllers\Api\SetApiController::class,
-        'v1/teams' => \App\Http\Controllers\Api\TeamApiController::class,
-        'v1/tournaments' => \App\Http\Controllers\Api\TournamentApiController::class,
-        // 'v1/leaderboards' => \App\Http\Controllers\Api\LeaderboardApiController::class, // TODO!: Implement
-    ],
-    ['only' => ['index', 'show'], 'as' => 'api']
+// TODO!: Check for scope: https://laravel.com/docs/10.x/sanctum#token-ability-middleware
+Route::group(
+    ['prefix' => 'v1', 'as' => 'api.v1.', 'middleware' => ['auth:sanctum']],
+    function () {
+        Route::apiResources(
+            [
+                '/news' => \App\Http\Controllers\Api\NewsApiController::class,
+                '/players' => \App\Http\Controllers\Api\PlayerApiController::class,
+                '/sets' => \App\Http\Controllers\Api\SetApiController::class,
+                '/teams' => \App\Http\Controllers\Api\TeamApiController::class,
+                '/tournaments' => \App\Http\Controllers\Api\TournamentApiController::class,
+                // 'v1/leaderboards' => \App\Http\Controllers\Api\LeaderboardApiController::class, // TODO!: Implement
+            ],
+            ['only' => ['index', 'show']]
+        );
+    }
 );
 
-Route::apiResources([
-    // 'v1/search' => \App\Http\Controllers\Api\SearchApiController::class, // TODO!: Implement
-], ['only' => ['index'], 'as' => 'api']);
+// Route::apiResources([
+//     // 'v1/search' => \App\Http\Controllers\Api\SearchApiController::class, // TODO!: Implement
+// ], ['only' => ['index'], 'as' => 'api'])->middleware('auth:sanctum');

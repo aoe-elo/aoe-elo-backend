@@ -42,40 +42,52 @@ Route::post('/tokens/create', function (Request $request) {
     return ['token' => $token->plainTextToken];
 });
 
+// TODO!: Implement authentication with social providers first
+// Route::post('/sanctum/token', function (Request $request) {
+
+// $request->validate([
+//     'email' => 'required|email',
+//     'password' => 'required',
+//     'device_name' => 'required',
+// ]);
+
+// $user = User::where('email', $request->email)->first();
+
+// if (! $user || ! Hash::check($request->password, $user->password)) {
+//     throw ValidationException::withMessages([
+//         'email' => ['The provided credentials are incorrect.'],
+//     ]);
+// }
+
+// return $user->createToken($request->device_name)->plainTextToken;
+// });
+
 // TODO: Use gates/policies for authorization to resources:
 // https://laravel.com/docs/10.x/authorization#authorizing-actions-via-gates
-
-// TODO: keep in mind there is also auto-creation of routes for CRUD resources:
-// Route::resource('players', PlayerController::class);
-// TODO: how do we deal with auth when auto-creating this resource routes?
-
-// TODO: This endpoint is to debug the php-backend connection to the frontend
-// TODO: Remove when in production
-Route::get('/debug/{id?}', function (string $id = null) {
-});
-
-Route::get('/', HomeWebController::class)->name('home');
-
-Route::apiResources([
-    '/players' => PlayerWebController::class,
-    '/teams' => TeamWebController::class,
-    '/tournaments' => TournamentWebController::class,
-    '/sets' => SetWebController::class,
-    '/reviews' => ReviewWebController::class,
-    '/news' => NewsWebController::class,
-], ['as' => 'web']);
+Route::group(
+    ['prefix' => 'v1', 'as' => 'web.v1.', 'middleware' => ['auth:sanctum']],
+    function () {
+        Route::apiResources([
+            '/players' => PlayerWebController::class,
+            '/teams' => TeamWebController::class,
+            '/tournaments' => TournamentWebController::class,
+            '/sets' => SetWebController::class,
+            '/reviews' => ReviewWebController::class,
+            '/news' => NewsWebController::class,
+        ]);
+    });
 
 // Dashboard
-
-Route::get('/dashboard', function () {
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 // Auth
 
-Route::namespace('Web')->middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+Route::
+        namespace('Web')->middleware('auth')->group(function () {
+            Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+            Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+            Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+        });
 
 require __DIR__ . '/auth.php';
