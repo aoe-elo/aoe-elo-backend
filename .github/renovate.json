@@ -8,7 +8,7 @@
     ],
     "packageRules": [
         {
-            "matchPackagePatterns": [
+            "matchDatasources": [
                 "composer"
             ],
             "labels": [
@@ -16,7 +16,7 @@
             ]
         },
         {
-            "matchPackagePatterns": [
+            "matchDatasources": [
                 "github-actions"
             ],
             "labels": [
