@@ -14,6 +14,10 @@
 
 namespace App\Repositories;
 
+use App\Models\DiscordUser;
+use App\Models\GithubUser;
+use App\Models\SteamUser;
+use App\Models\TwitchUser;
 use App\Models\User;
 use App\Interfaces\UserRepositoryInterface;
 
@@ -51,21 +55,21 @@ class UserRepository implements UserRepositoryInterface
 
     public static function getUserByDiscordId($discordId)
     {
-        return User::where('discord_user_id', $discordId)->firstOrFail();
+        return DiscordUser::where('discord_id', $discordId)->firstOrFail()->user;
     }
 
     public static function getUserBySteamId($steamId)
     {
-        return User::where('steam_user_id', $steamId)->firstOrFail();
+        return SteamUser::where('steam_id', $steamId)->firstOrFail()->user;
     }
 
     public static function getUserByTwitchId($twitchId)
     {
-        return User::where('twitch_user_id', $twitchId)->firstOrFail();
+        return TwitchUser::where('twitch_id', $twitchId)->firstOrFail()->user;
     }
 
-    public static function getUserByGitHubId($gitHubId)
+    public static function getUserByGitHubId($githubId)
     {
-        return User::where('github_user_id', $gitHubId)->firstOrFail();
+        return GithubUser::where('github_id', $githubId)->firstOrFail()->user;
     }
 }

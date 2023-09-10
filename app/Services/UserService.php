@@ -14,13 +14,13 @@
 
 namespace App\Services;
 
-use App\Interfaces\UserRepositoryInterface;
+use App\Repositories\UserRepository;
 
 class UserService
 {
-    private UserRepositoryInterface $userRepository;
+    private UserRepository $userRepository;
 
-    public function __construct(UserRepositoryInterface $userRepository)
+    public function __construct(UserRepository $userRepository)
     {
         $this->userRepository = $userRepository;
     }
@@ -45,8 +45,8 @@ class UserService
         return $this->userRepository->getUserByTwitchId($twitchId);
     }
 
-    public function getUserByGitHubId(int $gitHubId)
+    public function getUserByGitHubId(int $githubId)
     {
-        return $this->userRepository->getUserByGitHubId($gitHubId);
+        return $this->userRepository->getUserByGitHubId($githubId);
     }
 }
