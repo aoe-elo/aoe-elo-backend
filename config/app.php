@@ -171,23 +171,23 @@ return [
 
     // TODO! Production: remove all unneeded ServiceProviders for Performance
     'providers' => ServiceProvider::defaultProviders()->merge([
-            /*
+        /*
              * Package Service Providers...
              */
 
-            /*
+        /*
              * Application Service Providers...
              */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
-            // App\Providers\BroadcastServiceProvider::class,
+        // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         \Webpatser\Countries\CountriesServiceProvider::class,
         \SocialiteProviders\Manager\ServiceProvider::class,
         Vyuldashev\LaravelOpenApi\OpenApiServiceProvider::class,
 
-            /*
+        /*
              * Other Service Providers...
              */
         App\Providers\RepositoryServiceProvider::class,

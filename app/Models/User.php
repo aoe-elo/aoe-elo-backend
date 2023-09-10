@@ -18,6 +18,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -32,22 +33,12 @@ use Spatie\Permission\Traits\HasRoles;
  * @property int|null $id
  * @property string|null $name
  * @property string $email
- * @property int $discord_user_id
- * @property int $steam_user_id
- * @property int $twitch_user_id
- * @property int $github_user_id
- * @property int $player_id
  * @property int $country_id
  * @property string $remember_token
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property string $deleted_at
  *
- * @property DiscordUser $discord_user
- * @property SteamUser $steam_user
- * @property TwitchUser $twitch_user
- * @property GithubUser $github_user
- * @property Player $player
  * @property Country $country
  *
  * @package App\Models
@@ -71,11 +62,6 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
-        'discord_user_id',
-        'steam_user_id',
-        'twitch_user_id',
-        'github_user_id',
-        'player_id',
         'country_id',
         'remember_token'
     ];
@@ -95,37 +81,32 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
-        'discord_user_id' => 'int',
-        'steam_user_id' => 'int',
-        'twitch_user_id' => 'int',
-        'github_user_id' => 'int',
-        'player_id' => 'int',
         'country_id' => 'int'
     ];
 
-    public function discord_user(): BelongsTo
+    public function discord_user(): HasOne
     {
-        return $this->belongsTo(DiscordUser::class);
+        return $this->hasOne(DiscordUser::class);
     }
 
-    public function steam_user(): BelongsTo
+    public function steam_user(): HasOne
     {
-        return $this->belongsTo(SteamUser::class);
+        return $this->hasOne(SteamUser::class);
     }
 
-    public function twitch_user(): BelongsTo
+    public function twitch_user(): HasOne
     {
-        return $this->belongsTo(TwitchUser::class);
+        return $this->hasOne(TwitchUser::class);
     }
 
-    public function github_user(): BelongsTo
+    public function github_user(): HasOne
     {
-        return $this->belongsTo(GithubUser::class);
+        return $this->hasOne(GithubUser::class);
     }
 
-    public function player(): BelongsTo
+    public function player(): HasOne
     {
-        return $this->belongsTo(Player::class);
+        return $this->hasOne(Player::class);
     }
 
     /**

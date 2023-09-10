@@ -78,9 +78,13 @@ return new class () extends Migration {
                 table: 'countries',
                 indexName: 'country_id_idx'
             )->comment('was country_key and not foreign');
+            $table->foreignId('user_id')->nullable()->default(null)->constrained(
+                table: 'users',
+                indexName: 'user_id_idx'
+            );
             $table->timestamps();
             $table->softDeletes();
-            $table->unique(['name', 'country_id', 'relic_link_id_main', 'steam_id_main']);
+            $table->unique(['name', 'user_id', 'country_id', 'relic_link_id_main', 'steam_id_main']);
         });
 
         // Table to connect players to teams (many-to-many)

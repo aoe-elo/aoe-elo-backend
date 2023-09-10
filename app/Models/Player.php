@@ -40,12 +40,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string|null $twitch_handle
  * @property int|null $aoe_reference_data_player_id
  * @property int|null $country_id
+ * @property int|null $user_id
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property string $deleted_at
  *
  * @property ArdPlayer $ard_player
  * @property Country $country
+ * @property User $user
  *
  * @package App\Models
  */
@@ -62,7 +64,8 @@ class Player extends Model
         'current_atp' => 'int',
         'base_atp' => 'int',
         'aoe_reference_data_player_id' => 'int',
-        'country_id' => 'int'
+        'country_id' => 'int',
+        'user_id' => 'int'
     ];
 
     protected $fillable = [
@@ -78,7 +81,8 @@ class Player extends Model
         'discord_handle',
         'twitch_handle',
         'aoe_reference_data_player_id',
-        'country_id'
+        'country_id',
+        'user_id'
     ];
 
     /**
@@ -139,5 +143,10 @@ class Player extends Model
     public function country(): BelongsTo
     {
         return $this->belongsTo(Country::class, 'country_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

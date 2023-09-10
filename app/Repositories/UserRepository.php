@@ -48,4 +48,24 @@ class UserRepository implements UserRepositoryInterface
     {
         return User::whereId($userId)->update($newUserDetails);
     }
+
+    public static function getUserByDiscordId($discordId)
+    {
+        return User::where('discord_user_id', $discordId)->firstOrFail();
+    }
+
+    public static function getUserBySteamId($steamId)
+    {
+        return User::where('steam_user_id', $steamId)->firstOrFail();
+    }
+
+    public static function getUserByTwitchId($twitchId)
+    {
+        return User::where('twitch_user_id', $twitchId)->firstOrFail();
+    }
+
+    public static function getUserByGitHubId($gitHubId)
+    {
+        return User::where('github_user_id', $gitHubId)->firstOrFail();
+    }
 }

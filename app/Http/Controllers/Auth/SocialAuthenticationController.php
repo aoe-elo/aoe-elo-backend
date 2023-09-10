@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Auth;
 
 class SocialAuthenticationController extends Controller
 {
-    public function redirectToSocialProvider($socialProvider) : void
+    public function redirectToSocialProvider($socialProvider): void
     {
         match ($socialProvider) {
             'github' => $this->redirectToGitHubProvider(),
@@ -45,22 +45,22 @@ class SocialAuthenticationController extends Controller
         };
     }
 
-    public function redirectToGitHubProvider() : void
+    public function redirectToGitHubProvider(): void
     {
         Socialite::driver('github')->scopes(['read:user', 'public_repo'])->redirect();
     }
 
-    public function redirectToDiscordProvider() : void
+    public function redirectToDiscordProvider(): void
     {
         Socialite::driver('discord')->scopes(['identify'])->redirect();
     }
 
-    public function redirectToSteamProvider() : void
+    public function redirectToSteamProvider(): void
     {
         Socialite::driver('steam')->redirect();
     }
 
-    public function redirectToTwitchProvider() : void
+    public function redirectToTwitchProvider(): void
     {
         Socialite::driver('twitch')->scopes(['user:read:email'])->redirect();
     }

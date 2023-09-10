@@ -29,8 +29,13 @@ return new class () extends Migration {
             $table->string('name')->nullable();
             $table->string('email')->unique()->nullable();
             $table->string('avatar')->nullable();
+            $table->foreignId('user_id')->nullable()->default(null)->constrained(
+                table: 'users',
+                indexName: 'user_id_idx'
+            );
             $table->timestamps();
             $table->softDeletes();
+            $table->unique(['user_id', 'discord_id']);
         });
 
         Schema::connection('sqlite')->create('steam_users', function (Blueprint $table) {
@@ -39,8 +44,13 @@ return new class () extends Migration {
             $table->string('nickname')->nullable();
             $table->string('name')->nullable();
             $table->string('avatar')->nullable();
+            $table->foreignId('user_id')->nullable()->default(null)->constrained(
+                table: 'users',
+                indexName: 'user_id_idx'
+            );
             $table->timestamps();
             $table->softDeletes();
+            $table->unique(['user_id', 'steam_id']);
         });
 
         Schema::connection('sqlite')->create('twitch_users', function (Blueprint $table) {
@@ -50,8 +60,13 @@ return new class () extends Migration {
             $table->string('name')->nullable();
             $table->string('email')->nullable();
             $table->string('avatar')->nullable();
+            $table->foreignId('user_id')->nullable()->default(null)->constrained(
+                table: 'users',
+                indexName: 'user_id_idx'
+            );
             $table->timestamps();
             $table->softDeletes();
+            $table->unique(['user_id', 'twitch_id']);
         });
 
         Schema::connection('sqlite')->create('github_users', function (Blueprint $table) {
@@ -61,8 +76,13 @@ return new class () extends Migration {
             $table->string('email')->nullable();
             $table->string('github_token')->nullable();
             $table->string('github_refresh_token')->nullable();
+            $table->foreignId('user_id')->nullable()->default(null)->constrained(
+                table: 'users',
+                indexName: 'user_id_idx'
+            );
             $table->timestamps();
             $table->softDeletes();
+            $table->unique(['user_id', 'github_id']);
         });
     }
 
