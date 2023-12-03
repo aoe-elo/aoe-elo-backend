@@ -60,6 +60,8 @@ class LegacyProcessorService implements DataProcessingInterface
         5 => 8, // pumukel
         6 => 9, // michaerbse
         7 => 10, // sieste
+        8 => 11, // simonsan
+        9 => 13 // lucho
     ];
 
     private LookupService $lookup_service;

@@ -27,7 +27,7 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         $system_users = ['admin', 'ada', 'sudo'];
-        $editor_users = ['mungo', 'uberrushung', 'huleck', 'vale', 'pumukel', 'michaerbse', 'sieste', 'simonsan', 'ghostmonkey'];
+        $editor_users = ['mungo', 'uberrushung', 'huleck', 'vale', 'pumukel', 'michaerbse', 'sieste', 'simonsan', 'ghostmonkey', 'lucho'];
 
         // concatenate arrays
 
